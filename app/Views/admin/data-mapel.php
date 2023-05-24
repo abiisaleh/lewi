@@ -1,21 +1,14 @@
 <?php $this->extend('admin'); ?>
 
 <?php $this->section('tools'); ?>
-<div class="float-start float-sm-end">
-  <button type="button" class="btn btn-primary block" data-bs-toggle="modal" data-bs-target="#modal-add">
-    <i class="bi bi-plus"></i> Tambah Data
-  </button>
-</div>
+<button type="button" class="btn btn-primary block" data-bs-toggle="modal" data-bs-target="#modal-add">
+  <i class="bi bi-plus"></i> <span class="d-none d-sm-inline">Tambah</span> Data
+</button>
 <?php $this->endsection('tools'); ?>
 
 <?php $this->section('content'); ?>
-<div class="card">
-  <div class="card-body">
-    <div class="table-responsive">
-      <table class="table table-hover" id="tabel"></table>
-    </div>
-  </div>
-</div>
+<?= view_cell('TableCell', 'id=tabel') ?>
+
 
 <!--Basic Modal -->
 <div class="modal fade text-left" id="modal-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
@@ -59,9 +52,11 @@
 <?php $this->section('script'); ?>
 <script>
   var dataTable = $('#tabel').DataTable({
-    responsive: true,
     autoWidth: false,
     processing: true,
+    language: {
+      url: 'https://cdn.datatables.net/plug-ins/1.13.4/i18n/id.json'
+    },
     ajax: window.location.href,
     columns: [{
         "title": "#",

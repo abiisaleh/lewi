@@ -144,7 +144,7 @@
                             <span class="navbar-toggler-icon"></span>
                         </button>
 
-                        <div class="form-group has-icon-left m-2">
+                        <!-- <div class="form-group has-icon-left m-2">
                             <div class="position-relative">
                                 <form action="buku" method="get">
                                     <input type="text" class="form-control" name="cari" placeholder="Cari buku" id="first-name-horizontal-icon">
@@ -153,7 +153,7 @@
                                     </div>
                                 </form>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mb-lg-0">
@@ -224,11 +224,11 @@
                 <div class="page-heading">
                     <div class="page-title">
                         <div class="row">
-                            <div class="col-12 col-sm-6 order-md-1 order-last">
+                            <div class="col-8 col-sm-6 order-md-1 order-last">
                                 <h3><?= $title ?></h3>
                             </div>
-                            <div class="col-12 col-sm-6 order-md-1 order-last">
-                                <div class="float-start float-sm-end">
+                            <div class="col-4 col-sm-6 order-md-1 order-last">
+                                <div class="float-end">
                                     <?php $this->renderSection('tools'); ?>
                                 </div>
                             </div>
@@ -264,6 +264,7 @@
     <script src="assets/static/js/pages/datatables.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
 
+    <?php $this->renderSection('script'); ?>
     <script>
         $(function() {
             var url = window.location.href
@@ -271,11 +272,12 @@
                 return this.id == '<?= $title ?>'
             }).addClass('active')
         })
+
+        dataTable.responsive(true)
     </script>
 
     <script src="assets/compiled/js/app.js"></script>
 
-    <?php $this->renderSection('script'); ?>
 
 </body>
 

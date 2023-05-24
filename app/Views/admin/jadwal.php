@@ -59,9 +59,11 @@
 <?php $this->section('script'); ?>
 <script>
     var dataTable = $('.table').DataTable({
-        responsive: true,
         autoWidth: false,
         processing: true,
+        language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.13.4/i18n/id.json'
+        },
         ajax: window.location.href,
         columns: [{
                 "title": "Hari",

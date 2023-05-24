@@ -2,7 +2,7 @@
 
 <?php $this->section('tools'); ?>
 <button type="button" class="btn btn-primary block" data-bs-toggle="modal" data-bs-target="#modal-add">
-  <i class="bi bi-plus"></i> Tambah Data
+  <i class="bi bi-plus"></i> <span class="d-none d-sm-inline">Tambah</span> Data
 </button>
 <?php $this->endsection('tools'); ?>
 
@@ -56,9 +56,11 @@
 
 <script>
   var dataTable = $('.table').DataTable({
-    responsive: true,
     autoWidth: false,
     processing: true,
+    language: {
+      url: 'https://cdn.datatables.net/plug-ins/1.13.4/i18n/id.json'
+    },
     ajax: window.location.href,
     columns: [{
         "title": "NIP",

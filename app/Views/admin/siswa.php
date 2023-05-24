@@ -1,11 +1,9 @@
 <?php $this->extend('admin'); ?>
 
 <?php $this->section('tools'); ?>
-<div class="float-start float-sm-end">
-  <button type="button" class="btn btn-primary block" id="addTrigger" data-bs-toggle="modal" data-bs-target="#modal-add">
-    <i class="bi bi-plus"></i> Tambah Data
-  </button>
-</div>
+<button type="button" class="btn btn-primary block" id="addTrigger" data-bs-toggle="modal" data-bs-target="#modal-add">
+  <i class="bi bi-plus"></i> <span class="d-none d-sm-inline">Tambah</span> Data
+</button>
 <?php $this->endsection('tools'); ?>
 
 <?php $this->section('content'); ?>
@@ -122,9 +120,11 @@
 <?php $this->section('script'); ?>
 <script>
   var dataTable = $('.table').DataTable({
-    responsive: true,
     autoWidth: false,
     processing: true,
+    language: {
+      url: 'https://cdn.datatables.net/plug-ins/1.13.4/i18n/id.json'
+    },
     ajax: window.location.href,
     columns: [{
         "title": "NIS",

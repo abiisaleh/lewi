@@ -15,7 +15,7 @@ $this->section('content');
             </div>
             <div class="card-content pb-4">
                 <div class="recent-message d-flex px-4 py-3">
-                    <div class="avatar bg-danger my-2 me-3">
+                    <div class="avatar bg-danger my-2">
                         <span class="avatar-content">1</span>
                     </div>
                     <div class="name w-100 ms-4">
@@ -23,11 +23,11 @@ $this->section('content');
                         <h6 class="text-muted mb-0">123123909</h6>
                     </div>
                     <div class="p-2">
-                        <span class="badge bg-primary">34</span>
+                        <span class="badge bg-primary d-none d-sm-inline">34</span>
                     </div>
                 </div>
                 <div class="recent-message d-flex px-4 py-3">
-                    <div class="avatar bg-warning my-2 me-3">
+                    <div class="avatar bg-warning my-2">
                         <span class="avatar-content">2</span>
                     </div>
                     <div class="name w-100 ms-4">
@@ -35,11 +35,11 @@ $this->section('content');
                         <h6 class="text-muted mb-0">@imdean</h6>
                     </div>
                     <div class="p-2">
-                        <span class="badge bg-primary">34</span>
+                        <span class="badge bg-primary d-none d-sm-inline">34</span>
                     </div>
                 </div>
                 <div class="recent-message d-flex px-4 py-3">
-                    <div class="avatar bg-success my-2 me-3">
+                    <div class="avatar bg-success my-2">
                         <span class="avatar-content">3</span>
                     </div>
                     <div class="name w-100 ms-4">
@@ -47,7 +47,7 @@ $this->section('content');
                         <h6 class="text-muted mb-0">@dodoljohn</h6>
                     </div>
                     <div class="p-2">
-                        <span class="badge bg-primary b-1">34</span>
+                        <span class="badge bg-primary d-none d-sm-inline b-1">34</span>
                     </div>
                 </div>
             </div>

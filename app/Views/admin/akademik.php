@@ -2,7 +2,7 @@
 
 <?php $this->section('tools'); ?>
 <button type="button" class="btn btn-primary block" data-bs-toggle="modal" data-bs-target="#modal-add">
-  <i class="bi bi-plus"></i> Tahun Ajaran Baru
+  <i class="bi bi-plus"></i> <span class="d-none d-sm-inline">Tahun Ajaran Baru</span> <span class="d-sm-none">TA</span>
 </button>
 
 <!-- Modal -->
@@ -60,7 +60,7 @@
               <h5 class="mb-1">Hank Schrader</h5>
               <h6 class="text-muted mb-0">Wali Kelas</h6>
             </div>
-            <div>
+            <div class="d-none d-sm-inline">
               <button class="btn btn-warning" id="editwali">Ganti</button>
               <!-- Modal Wali Kelas -->
               <div class="modal fade text-left" id="modal-wali">
@@ -129,6 +129,9 @@
     responsive: true,
     autoWidth: false,
     processing: true,
+    language: {
+      url: 'https://cdn.datatables.net/plug-ins/1.13.4/i18n/id.json'
+    },
     ajax: '<?= base_url('admin/siswa') ?>',
     columns: [{
         "title": "NIS",
