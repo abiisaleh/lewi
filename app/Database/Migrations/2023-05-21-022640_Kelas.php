@@ -8,13 +8,13 @@ class Kelas extends Migration
 {
     public function up()
     {
+        $this->forge->addField('id');
         $this->forge->addField([
             'tingkat' => [
                 'type'=> 'ENUM("X","XI","XII")'
             ],
             'jurusan' => [
-                'type' => 'VARCHAR',
-                'length' => '10',
+                'type' => 'ENUM("IPA","IPS","Bahasa")'
             ],
             'kode' => [
                 'type' => 'CHAR',

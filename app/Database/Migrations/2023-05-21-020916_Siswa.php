@@ -9,7 +9,7 @@ class Siswa extends Migration
     public function up()
     {
         $this->forge->addField([
-            'nim' => [
+            'nis' => [
                 'type' => 'VARCHAR',
                 'constraint' => 10,
                 'unique'    => true,
@@ -17,35 +17,53 @@ class Siswa extends Migration
             ],
             'nama' => [
                 'type' => 'VARCHAR',
-                'length' => 30, 
-            ],
-            'fkKelas' => [
-                'type' => 'INT',
-                'length' => 3,
+                'constraint' => 30, 
             ],
             'alamat' => [
                 'type' => 'TEXT'
             ],
-            'jkel' => [
-                'type' => 'ENUM("L","P")'
+            'jk' => [
+                'type' => 'ENUM("L","P")',
+                'default' => 'L'
             ],
-            'temp_lahir' => [
-                'type' => 'TEXT'
+            'tempt_lahir' => [
+                'type' => 'TEXT',
             ],
             'tgl_lahir' => [
                 'type' => 'DATE'
             ],
             'agama' => [
-                'type' => 'ENUM("Islam, "Kristen", "Katolik", "Hindu", "Budha", "Konghucu")'
+                'type' => 'ENUM("Islam", "Kristen", "Katolik", "Hindu", "Budha", "Konghucu")',
+                'DEfAULT' => 'Kristen'
             ],
             'telp' => [
                 'type' => 'VARCHAR',
-                'length' => 16,
+                'constraint' => 16,
             ],
             'telp_ortu' => [
                 'type' => 'VARCHAR',
-                'length' => 16,
-            ]
+                'constraint' => 16,
+            ],
+            'penghasilan_ortu' => [
+                'type' => 'INT',
+                'constraint' => 3,
+                'null' => true
+            ],
+            'tanggungan_ortu' => [
+                'type' => 'INT',
+                'constraint' => 3,
+                'null' => true
+            ],
+            'jarak_rumah' => [
+                'type' => 'INT',
+                'constraint' => 3,
+                'null' => true
+            ],
+            'kondisi_rumah' => [
+                'type' => 'INT',
+                'constraint' => 3,
+                'null' => true
+            ],
         ]);
         $this->forge->addPrimaryKey('nim');
         $this->forge->createTable('siswa');

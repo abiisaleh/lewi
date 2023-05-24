@@ -31,6 +31,22 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+$routes->get('admin', 'Admin\Dashboard:index');
+
+$routes->resource('admin/datamaster/kelas');
+$routes->resource('admin/datamaster/mapel');
+$routes->resource('admin/datamaster/pelanggaran');
+
+$routes->resource('admin/siswa');
+$routes->resource('admin/guru');
+
+$routes->resource('admin/akademik');
+
+$routes->resource('admin/jadwal');
+
+$routes->get('admin/rekomendasi/beasiswa', 'Admin\Rekomendasi::beasiswa');
+$routes->get('admin/rekomendasi/prestasi', 'Admin\Rekomendasi::prestasi');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
