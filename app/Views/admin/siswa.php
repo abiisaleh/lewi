@@ -2,7 +2,7 @@
 
 <?php $this->section('tools'); ?>
 <div class="float-start float-sm-end">
-  <button type="button" class="btn btn-primary block" data-bs-toggle="modal" data-bs-target="#modal-add">
+  <button type="button" class="btn btn-primary block" id="addTrigger" data-bs-toggle="modal" data-bs-target="#modal-add">
     <i class="bi bi-plus"></i> Tambah Data
   </button>
 </div>
@@ -16,7 +16,7 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="myModalLabel1">
+        <h5 class="modal-title" id="modal-add-title">
           Tambah Data
         </h5>
         <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
@@ -170,6 +170,12 @@
     }],
   })
 
+  //Reset & Ubah nama modal
+  $('#addTrigger').click(function() {
+    $('#modal-add-title').text('Tambah Data');
+    $('#form-add')[0].reset();
+  })
+
   //Tambah Data
   $('#form-add').submit(function(e) {
     e.preventDefault()
@@ -180,7 +186,7 @@
       success: function() {
         $('#modal-add').modal('hide')
         dataTable.ajax.reload()
-        $('#form-add').reset()
+        $('#form-add')[0].reset()
       }
     })
   })
@@ -188,6 +194,11 @@
   //Hapus Data
   $('.table tbody').on('click', '.btnHapus', function() {
     var data = dataTable.row($(this).parents('tr')).data()
+
+    if (data == undefined) {
+      data = dataTable.row($(this)).data();
+    }
+
     var id = data.nis
 
     if (confirm('Anda yakin ingin menghapus data ini?')) {
@@ -203,7 +214,13 @@
 
   // Edit Data
   $('.table tbody').on('click', '.btnEdit', function() {
-    var data = dataTable.row(this).data();
+    var data = dataTable.row($(this).parents('tr')).data();
+
+    if (data == undefined) {
+      data = dataTable.row($(this)).data();
+    }
+
+    $('#modal-add-title').text('Ubah Data');
 
     $('#inputnis').val(data.nis);
     $('#inputnama').val(data.nama);

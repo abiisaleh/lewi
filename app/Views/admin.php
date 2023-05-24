@@ -241,10 +241,10 @@
             </div>
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
-                    <div class="float-start">
+                    <div class="float-sm-start text-center">
                         <p>2023 &copy; Monitoring SMA Jayapura</p>
                     </div>
-                    <div class="float-end">
+                    <div class="float-sm-end text-center">
                         <p>
                             Crafted with
                             <span class="text-danger"><i class="bi bi-heart-fill icon-mid"></i></span>
