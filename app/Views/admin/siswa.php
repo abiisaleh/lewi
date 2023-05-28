@@ -125,14 +125,15 @@
     language: {
       url: 'https://cdn.datatables.net/plug-ins/1.13.4/i18n/id.json'
     },
+    colReorder: true,
     ajax: window.location.href,
     columns: [{
-        "title": "NIS",
-        "data": "nis"
-      },
-      {
         "title": "Nama",
         "data": "nama"
+      },
+      {
+        "title": "NIS",
+        "data": "nis"
       },
       {
         "title": "JK",

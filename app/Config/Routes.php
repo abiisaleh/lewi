@@ -38,7 +38,10 @@ $routes->resource('admin/datamaster/mapel');
 $routes->resource('admin/datamaster/pelanggaran');
 
 $routes->resource('admin/siswa');
+$routes->get('api/select2/siswa', 'Admin\Siswa::select2');
+
 $routes->resource('admin/guru');
+$routes->get('api/select2/guru', 'Admin\Guru::select2');
 
 $routes->resource('admin/akademik');
 
@@ -46,7 +49,6 @@ $routes->resource('admin/jadwal');
 
 $routes->get('admin/rekomendasi/beasiswa', 'Admin\Rekomendasi::beasiswa');
 $routes->get('admin/rekomendasi/prestasi', 'Admin\Rekomendasi::prestasi');
-
 /*
  * --------------------------------------------------------------------
  * Additional Routing

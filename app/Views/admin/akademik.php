@@ -76,10 +76,10 @@
                       <div class="form-body">
                         <div class="modal-body">
                           <?= csrf_field(); ?>
-                          <input type="text" id="inputid" name="id" hidden>
+                          <input type="text" value="kelas" name="kelas" hidden>
                           <div class="row">
 
-                            <?= view_cell('InputCell', 'name=wali,text=Wali Kelas') ?>
+                            <?= view_cell('SelectCell', ['name' => 'guru', 'text' => 'Wali Kelas', 'option' => ['-']]) ?>
 
                           </div>
                         </div>
@@ -107,7 +107,7 @@
           <form>
             <div class="form-body">
               <div class="row">
-                <?= view_cell('SelectCell', ['name' => 'siswa', 'text' => 'NIS/Nama', 'option' => ['-', 'abi']]) ?>
+                <?= view_cell('SelectCell', ['name' => 'siswa', 'text' => 'NIS/Nama', 'option' => ['-']]) ?>
                 <button class="btn btn-success">Tambahkan</button>
               </div>
             </div>
@@ -125,6 +125,21 @@
 
 <?php $this->section('script'); ?>
 <script>
+  $('#inputsiswa').select2({
+    ajax: {
+      url: '/api/select2/siswa',
+    },
+    theme: "bootstrap-5",
+  });
+
+  $('#inputguru').select2({
+    ajax: {
+      url: '/api/select2/guru',
+    },
+    theme: "bootstrap-5",
+    dropdownParent: $('#modal-wali'),
+  });
+
   var dataTable = $('#tabel').DataTable({
     responsive: true,
     autoWidth: false,
@@ -132,7 +147,7 @@
     language: {
       url: 'https://cdn.datatables.net/plug-ins/1.13.4/i18n/id.json'
     },
-    ajax: '<?= base_url('admin/siswa') ?>',
+    ajax: '',
     columns: [{
         "title": "NIS",
         "data": "nis"

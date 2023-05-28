@@ -2,6 +2,7 @@
 
 
 namespace App\Controllers\Admin;
+
 use App\Models\SiswaModel;
 use CodeIgniter\RESTful\ResourceController;
 
@@ -11,7 +12,7 @@ class Siswa extends ResourceController
 
     public function __construct()
     {
-        $this->model = new SiswaModel();   
+        $this->model = new SiswaModel();
     }
     /**
      * Return an array of resource objects, themselves in array format
@@ -24,11 +25,10 @@ class Siswa extends ResourceController
             $data['data'] = $this->model->findAll();
 
             return $this->response->setJSON($data);
-
         } else {
             helper('auth');
             $data['title'] = 'Data Siswa';
-            return view('admin/siswa',$data);
+            return view('admin/siswa', $data);
         }
     }
 
@@ -91,5 +91,24 @@ class Siswa extends ResourceController
     public function delete($id = null)
     {
         $this->model->delete($id);
+    }
+
+    public function select2()
+    {
+        $query = $this->request->getVar('q');
+
+        if ($query) {
+            $array = $this->model->search($query)->findAll();
+        } else {
+            $array = $this->model->findAll();
+        }
+
+        $newArray = array_map(function ($item) {
+            return ['text' => $item['nama'], 'id' => $item['nis']];
+        }, $array);
+
+        $data['results'] = $newArray;
+
+        return $this->response->setJSON($data);
     }
 }

@@ -61,14 +61,15 @@
     language: {
       url: 'https://cdn.datatables.net/plug-ins/1.13.4/i18n/id.json'
     },
+    colReorder: true,
     ajax: window.location.href,
     columns: [{
-        "title": "NIP",
-        "data": "nip"
-      },
-      {
         "title": "Nama",
         "data": "nama"
+      },
+      {
+        "title": "NIP",
+        "data": "nip"
       },
       {
         "title": "Gol/ruang",

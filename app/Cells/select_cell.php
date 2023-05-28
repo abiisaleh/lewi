@@ -4,9 +4,9 @@
                   <div class="col-md-8 form-group">
                     <fieldset class="form-group">
                       <select class="form-select" id="input<?= $name ?>" name="<?= $name ?>">
-                        <?php foreach ($option as $item) :?>
-                            <option><?= $item ?></option>
-                        <?php endforeach;?>
+                        <?php foreach ($option as $item) : ?>
+                          <option><?= $item ?></option>
+                        <?php endforeach; ?>
                       </select>
                     </fieldset>
                   </div>

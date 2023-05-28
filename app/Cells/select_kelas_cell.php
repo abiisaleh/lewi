@@ -3,7 +3,7 @@
         <h5 class="card-title">Kelas</h5>
     </div>
     <div class="card-body">
-        <form class="form form-horizontal row" id="form-add">
+        <form class="form form-horizontal row" action="/admin/akademik/kelas" id="form-add">
             <div class="row">
                 <?= csrf_field(); ?>
                 <div class="form-body">

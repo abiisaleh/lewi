@@ -13,7 +13,7 @@ class SiswaModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nis','nama','alamat','jk','temt_lahir','agama','telp','telp_ortu','penghasilan_ortu','tanggungan_ortu','jarak_rumah','kondisi_rumah'];
+    protected $allowedFields    = ['nis', 'nama', 'alamat', 'jk', 'temt_lahir', 'agama', 'telp', 'telp_ortu', 'penghasilan_ortu', 'tanggungan_ortu', 'jarak_rumah', 'kondisi_rumah'];
 
     // Dates
     protected $useTimestamps = false;
@@ -38,4 +38,9 @@ class SiswaModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function search($query)
+    {
+        return $this->like('nama', $query)->orLike('nis', $query);
+    }
 }

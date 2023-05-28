@@ -38,4 +38,9 @@ class GuruModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function search($query)
+    {
+        return $this->like('nama', $query)->orLike('nip', $query);
+    }
 }

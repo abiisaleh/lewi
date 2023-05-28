@@ -12,7 +12,7 @@ class Guru extends ResourceController
 
     public function __construct()
     {
-        $this->model = new GuruModel();   
+        $this->model = new GuruModel();
     }
     /**
      * Return an array of resource objects, themselves in array format
@@ -25,11 +25,10 @@ class Guru extends ResourceController
             $data['data'] = $this->model->findAll();
 
             return $this->response->setJSON($data);
-
         } else {
             helper('auth');
             $data['title'] = 'Data Guru';
-            return view('admin/guru',$data);
+            return view('admin/guru', $data);
         }
     }
 
@@ -92,5 +91,24 @@ class Guru extends ResourceController
     public function delete($id = null)
     {
         $this->model->delete($id);
+    }
+
+    public function select2()
+    {
+        $query = $this->request->getVar('q');
+
+        if ($query) {
+            $array = $this->model->search($query)->findAll();
+        } else {
+            $array = $this->model->findAll();
+        }
+
+        $newArray = array_map(function ($item) {
+            return ['text' => $item['nama'], 'id' => $item['nip']];
+        }, $array);
+
+        $data['results'] = $newArray;
+
+        return $this->response->setJSON($data);
     }
 }

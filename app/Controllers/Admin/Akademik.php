@@ -30,6 +30,8 @@ class Akademik extends ResourceController
      */
     public function index()
     {
+        $kelas = $this->request->getVar('tingkat');
+
         if ($this->request->isAjax()) {
             $data['data'] = $this->KelasModel->wali()->findAll();
 
@@ -39,6 +41,8 @@ class Akademik extends ResourceController
             $data['title'] = 'Data Akademik';
             return view('admin/akademik', $data);
         }
+
+        //ganti wali kelas
     }
 
     /**
@@ -48,7 +52,21 @@ class Akademik extends ResourceController
      */
     public function show($id = null)
     {
-        //
+        //pilih kelas
+        if ($id == 'kelas') {
+            $tingkat = $this->request->getVar('tingkat');
+            $jurusan = $this->request->getVar('jurusan');
+            $kode = $this->request->getVar('kode');
+
+            $kelasModel = model('KelasModel');
+
+            $data = $kelasModel
+                ->where('tingkat', $tingkat)
+                ->where('jurusan', $jurusan)
+                ->where('kode', $kode)
+                ->find();
+            d($data);
+        }
     }
 
     /**
