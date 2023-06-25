@@ -11,58 +11,58 @@ class Demo extends Seeder
         //siswa
         $data = [
             [
-                'nis' => '12123001', 
-                'nama' => 'Siti Nur Rahma', 
-                'alamat' => 'Hotel 777, Abepura', 
-                'jk' => 'P', 
-                'tempt_lahir' => 'Timika', 
-                'tgl_lahir' => '2006-06-13', 
-                'agama' => 'Islam', 
-                'telp' => '082238204776', 
+                'nis' => '12123001',
+                'nama' => 'Siti Nur Rahma',
+                'alamat' => 'Hotel 777, Abepura',
+                'jk' => 'P',
+                'tempt_lahir' => 'Timika',
+                'tgl_lahir' => '2006-06-13',
+                'agama' => 'Islam',
+                'telp' => '082238204776',
                 'telp_ortu' => '082238204777',
             ],
             [
-                'nis' => '12123002', 
-                'nama' => 'Al Rahman Fazrin', 
-                'alamat' => 'Belakang Koramil, Abepura', 
-                'jk' => 'L', 
-                'tempt_lahir' => 'Jayapura', 
-                'tgl_lahir' => '2006-12-12', 
-                'agama' => 'Islam', 
-                'telp' => '082238204773', 
+                'nis' => '12123002',
+                'nama' => 'Al Rahman Fazrin',
+                'alamat' => 'Belakang Koramil, Abepura',
+                'jk' => 'L',
+                'tempt_lahir' => 'Jayapura',
+                'tgl_lahir' => '2006-12-12',
+                'agama' => 'Islam',
+                'telp' => '082238204773',
                 'telp_ortu' => '082238204772',
             ],
             [
-                'nis' => '12123003', 
-                'nama' => 'Riska Putri Nila Sari', 
-                'alamat' => 'Depan Ramayana, Kotaraja', 
-                'jk' => 'P', 
-                'tempt_lahir' => 'Timika', 
-                'tgl_lahir' => '2006-09-06', 
-                'agama' => 'Islam', 
-                'telp' => '082238204770', 
+                'nis' => '12123003',
+                'nama' => 'Riska Putri Nila Sari',
+                'alamat' => 'Depan Ramayana, Kotaraja',
+                'jk' => 'P',
+                'tempt_lahir' => 'Timika',
+                'tgl_lahir' => '2006-09-06',
+                'agama' => 'Islam',
+                'telp' => '082238204770',
                 'telp_ortu' => '082238204781',
             ],
             [
-                'nis' => '12123004', 
-                'nama' => 'Alfi Ulfa', 
-                'alamat' => 'Hotel 777, Abepura', 
-                'jk' => 'P', 
-                'tempt_lahir' => 'Jayapura', 
-                'tgl_lahir' => '2006-11-02', 
-                'agama' => 'Islam', 
-                'telp' => '082238204776', 
+                'nis' => '12123004',
+                'nama' => 'Alfi Ulfa',
+                'alamat' => 'Hotel 777, Abepura',
+                'jk' => 'P',
+                'tempt_lahir' => 'Jayapura',
+                'tgl_lahir' => '2006-11-02',
+                'agama' => 'Islam',
+                'telp' => '082238204776',
                 'telp_ortu' => '082238204777',
             ],
             [
-                'nis' => '12123005', 
-                'nama' => 'Amin Raiz', 
-                'alamat' => 'Hotel 777, Abepura', 
-                'jk' => 'L', 
-                'tempt_lahir' => 'Jayapura', 
-                'tgl_lahir' => '2006-01-09', 
-                'agama' => 'Islam', 
-                'telp' => '082238204776', 
+                'nis' => '12123005',
+                'nama' => 'Amin Raiz',
+                'alamat' => 'Hotel 777, Abepura',
+                'jk' => 'L',
+                'tempt_lahir' => 'Jayapura',
+                'tgl_lahir' => '2006-01-09',
+                'agama' => 'Islam',
+                'telp' => '082238204776',
                 'telp_ortu' => '082238204777',
             ],
         ];
@@ -71,32 +71,32 @@ class Demo extends Seeder
         //guru
         $data = [
             [
-                'nip' => '199206132005022001', 
-                'nama' => 'Apriani Ningsih', 
-                'gol' => 'III', 
-                'ruang' => 'b', 
-                'tempt_lahir' => 'Ambon', 
-                'tgl_lahir' => '1992-06-13', 
+                'nip' => '199206132005022001',
+                'nama' => 'Apriani Ningsih',
+                'gol' => 'III',
+                'ruang' => 'b',
+                'tempt_lahir' => 'Ambon',
+                'tgl_lahir' => '1992-06-13',
                 'jk' => 'P',
                 'telp' => '082238204776',
             ],
             [
-                'nip' => '199208132006021001', 
-                'nama' => 'Aldi Arisandy', 
-                'gol' => 'IV', 
-                'ruang' => 'a', 
-                'tempt_lahir' => 'Toraja', 
-                'tgl_lahir' => '1992-08-13', 
+                'nip' => '199208132006021001',
+                'nama' => 'Aldi Arisandy',
+                'gol' => 'IV',
+                'ruang' => 'a',
+                'tempt_lahir' => 'Toraja',
+                'tgl_lahir' => '1992-08-13',
                 'jk' => 'L',
                 'telp' => '082238204776',
             ],
             [
-                'nip' => '199212132007012001', 
-                'nama' => 'Nur Ilham', 
-                'gol' => 'IV', 
-                'ruang' => 'c', 
-                'tempt_lahir' => 'Jayapura', 
-                'tgl_lahir' => '1992-12-13', 
+                'nip' => '199212132007012001',
+                'nama' => 'Nur Ilham',
+                'gol' => 'IV',
+                'ruang' => 'c',
+                'tempt_lahir' => 'Jayapura',
+                'tgl_lahir' => '1992-12-13',
                 'jk' => 'P',
                 'telp' => '082238204776',
             ],
@@ -104,9 +104,9 @@ class Demo extends Seeder
         $this->db->table('guru')->insertBatch($data);
 
         // //kelas
-        $tingkat = ["X","XI","XII"];
-        $jurusan = ["IPA","IPS","BAHASA"];
-        $kode = [1,2,3,4];
+        $tingkat = ["X", "XI", "XII"];
+        $jurusan = ["IPA", "IPS", "BAHASA"];
+        $kode = [1, 2, 3];
 
         foreach ($tingkat as $Tingkat) {
             foreach ($jurusan as $Jurusan) {
@@ -196,9 +196,20 @@ class Demo extends Seeder
 
         //tahun ajaran
         $data = [
-            'tahun' => 2022/2023
+            'tahun' => 2022 / 2023
         ];
         $this->db->table('TA')->insert($data);
+
+        //pelanggaran
+        $data = [
+            ['nama' => 'Tidak masuk sekolah tanpa keterangan (alpa)', 'jenis' => 'kerajinan', 'skor' => 8, 'ket' => 'Pembinaan Oleh Wali Kelas/Guru BP'],
+            ['nama' => 'Tidak mengikuti doa/ibadah pagi, dan lainnya', 'jenis' => 'kerajinan', 'skor' => 8, 'ket' => 'Pembinaan Oleh Wali Kelas/Guru BP'],
+            ['nama' => 'Tidak memasukkan baju (kecuali jam olahraga)', 'jenis' => 'kerapihan', 'skor' => 4, 'ket' => 'Peringatan Oleh Wali Kelas/Guru BP'],
+            ['nama' => 'Tidak memakai kaos kaki', 'jenis' => 'kerapihan', 'skor' => 8, 'ket' => 'Peringatan Oleh Wali Kelas/Guru BP'],
+            ['nama' => 'Mabuk/ membawa minuman keras', 'jenis' => 'sikap dan perilaku', 'skor' => 100, 'ket' => 'Dikeluarkan dari sekolah'],
+            ['nama' => 'Membawa/ mengedarkan narkoba, obat/ zat aditif lainnya', 'jenis' => 'sikap dan perilaku', 'skor' => 100, 'ket' => 'Dikeluarkan dari sekolah'],
+        ];
+        $this->db->table('pelanggaran')->insertBatch($data);
 
         //kriteria
         $data = [
@@ -244,5 +255,11 @@ class Demo extends Seeder
             ]
         ];
         $this->db->table('kriteria')->insertBatch($data);
+
+        //Gruop Users
+        $authorize = $auth = service('authorization');
+        $authorize->addUserToGroup(1, 'admin');
+        $authorize->addUserToGroup(2, 'guru');
+        $authorize->addUserToGroup(3, 'siswa');
     }
 }

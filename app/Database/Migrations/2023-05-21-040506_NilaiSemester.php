@@ -18,6 +18,10 @@ class NilaiSemester extends Migration
                 'type' => 'INT',
                 'constraint' => 3
             ],
+            'fkMapel' => [
+                'type' => 'INT',
+                'constraint' => 3
+            ],
             'nilai' => [
                 'type' => 'INT',
                 'constraint' => 3

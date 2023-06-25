@@ -13,7 +13,7 @@ class KelasModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['tingkat','jurusan','kode'];
+    protected $allowedFields    = ['tingkat', 'jurusan', 'kode'];
 
     // Dates
     protected $useTimestamps = false;
@@ -41,15 +41,20 @@ class KelasModel extends Model
 
     public function wali()
     {
-        return $this->join('wali_kelas','kelas.id = fkKelas', 'left')
-                    ->join('guru','fkGuru = nip', 'left')
-                    ->select('kelas.*, guru.nama as wali');
+        return $this
+            ->join('wali_kelas', 'kelas.id = wali_kelas.fkKelas', 'left')
+            ->join('guru', 'wali_kelas.fkGuru = guru.nip', 'left')
+            ->select('kelas.*, guru.nama as wali');
     }
 
     public function countSiswa(array $data)
     {
         $siswaModel = $this->db->table('kelas_siswa_ta');
+
         foreach ($data['data'] as &$Item) {
+            if (is_string($Item)) {
+                return $data;
+            }
             $jumlahSiswa = $siswaModel->where('fkKelas', $Item['id'])->countAllResults();
             $Item['jumlah_siswa'] = $jumlahSiswa;
         }

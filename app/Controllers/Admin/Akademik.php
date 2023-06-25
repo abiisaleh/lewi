@@ -41,8 +41,6 @@ class Akademik extends ResourceController
             $data['title'] = 'Data Akademik';
             return view('admin/akademik', $data);
         }
-
-        //ganti wali kelas
     }
 
     /**
@@ -52,21 +50,8 @@ class Akademik extends ResourceController
      */
     public function show($id = null)
     {
-        //pilih kelas
-        if ($id == 'kelas') {
-            $tingkat = $this->request->getVar('tingkat');
-            $jurusan = $this->request->getVar('jurusan');
-            $kode = $this->request->getVar('kode');
-
-            $kelasModel = model('KelasModel');
-
-            $data = $kelasModel
-                ->where('tingkat', $tingkat)
-                ->where('jurusan', $jurusan)
-                ->where('kode', $kode)
-                ->find();
-            d($data);
-        }
+        $data['data'] = $this->SiswaKelasModel->where('fkKelas', $id)->siswa()->find();
+        return $this->response->setJSON($data);
     }
 
     /**
@@ -96,7 +81,14 @@ class Akademik extends ResourceController
      */
     public function edit($id = null)
     {
-        //
+        helper('auth');
+
+        $kelas = $this->KelasModel->find($id);
+
+        $data['title'] = 'Data Akademik';
+        $data['subtitle'] = 'Kelas ' . $kelas['tingkat'] . ' ' . $kelas['jurusan'] . ' ' . $kelas['kode'];
+        $data['kelas'] = $kelas;
+        return view('admin/akademik-siswa', $data);
     }
 
     /**
@@ -117,5 +109,40 @@ class Akademik extends ResourceController
     public function delete($id = null)
     {
         $this->model->delete($id);
+    }
+
+    public function walikelas()
+    {
+        $data = $this->request->getPost();
+        $data['fkTA'] = $this->TAmodel->countAllResults();
+
+        // Cek data wali kelas.
+        $data['id'] = $this->WaliKelasModel
+            ->where('fkKelas', $data['fkKelas'])
+            ->where('fkTA', $data['fkTA'])
+            ->first();
+
+        if (!is_null($data['id'])) {
+            $data['id'] = $data['id']['id'];
+        }
+
+        $this->WaliKelasModel->save($data);
+    }
+
+    public function siswa()
+    {
+        $data = $this->request->getPost();
+        $data['fkTA'] = $this->TAmodel->countAllResults();
+
+        // Cek data siswa di kelas.
+        $siswa = $this->SiswaKelasModel
+            ->where('fkKelas', $data['fkKelas'])
+            ->where('fkTA', $data['fkTA'])
+            ->where('fkSiswa', $data['fkSiswa'])
+            ->first();
+
+        if (is_null($siswa)) {
+            $this->SiswaKelasModel->save($data);
+        }
     }
 }

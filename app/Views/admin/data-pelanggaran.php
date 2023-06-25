@@ -1,4 +1,4 @@
-<?php $this->extend('admin'); ?>
+<?php $this->extend('admin/layout'); ?>
 
 <?php $this->section('tools'); ?>
 <button type="button" class="btn btn-primary block" data-bs-toggle="modal" data-bs-target="#modal-add">
@@ -28,10 +28,10 @@
           <div class="form-body">
             <div class="row">
 
-              <?= view_cell('InputCell', 'name=pelanggaran,text=Pelanggaran') ?>
+              <?= view_cell('InputCell', 'name=nama,text=Pelanggaran') ?>
               <?= view_cell('InputCell', 'name=jenis,text=Jenis') ?>
               <?= view_cell('InputCell', 'name=skor,text=Skor,type=number') ?>
-              <?= view_cell('InputCell', 'name=keterangan,text=Keterangan,type=text') ?>
+              <?= view_cell('InputCell', 'name=ket,text=Keterangan,type=text') ?>
 
               <div class="col-sm-12 d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary me-1 mb-1">
@@ -126,11 +126,10 @@
     var data = dataTable.row($(this).parents('tr')).data();
 
     $('#inputid').val(data.id);
-    $('#inputjudul').val(data.judul);
-    $('#inputpenulis').val(data.penulis);
-    $('#inputpenerbit').val(data.penerbit);
-    $('#inputrilis').val(data.rilis);
-    $('#inputkategori').val(data.fk_kategori);
+    $('#inputnama').val(data.nama);
+    $('#inputjenis').val(data.jenis);
+    $('#inputskor').val(data.skor);
+    $('#inputket').val(data.ket);
 
     $('#modal-add').modal('show');
   });

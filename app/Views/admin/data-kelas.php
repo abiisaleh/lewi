@@ -1,4 +1,4 @@
-<?php $this->extend('admin'); ?>
+<?php $this->extend('admin/layout'); ?>
 
 <?php $this->section('tools'); ?>
 <button type="button" class="btn btn-primary block" data-bs-toggle="modal" data-bs-target="#modal-add">
@@ -29,7 +29,7 @@
             <div class="row">
 
               <?= view_cell('SelectCell', ['name' => 'tingkat', 'text' => 'Kelas', 'option' => ['X', 'XI', 'XII']]) ?>
-              <?= view_cell('SelectCell', ['name' => 'jurusan', 'text' => 'Jurusan', 'option' => ['IPA', 'IPS', 'BAHASA']]) ?>
+              <?= view_cell('SelectCell', ['name' => 'jurusan', 'text' => 'Jurusan', 'option' => ['', 'IPA', 'IPS', 'BAHASA']]) ?>
               <?= view_cell('InputCell', ['name' => 'kode', 'text' => 'Kode']) ?>
 
               <div class="col-sm-12 d-flex justify-content-end">

@@ -13,7 +13,7 @@ class PelanggaranModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['nama', 'jenis', 'skor', 'ket'];
 
     // Dates
     protected $useTimestamps = false;
@@ -38,4 +38,9 @@ class PelanggaranModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function search($query)
+    {
+        return $this->like('nama', $query);
+    }
 }

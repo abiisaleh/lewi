@@ -15,12 +15,18 @@
     <link rel="stylesheet" href="assets/compiled/css/app.css" />
     <link rel="stylesheet" href="assets/compiled/css/app-dark.css" />
 
+    <link rel="stylesheet" href="assets/css/shared/iconly.css">
+
     <link rel="stylesheet" href="assets/extensions/toastify-js/src/toastify.css" />
 
     <!-- Styles -->
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" /> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+
+    <!-- FilePond -->
+    <link rel="stylesheet" href="assets/extensions/filepond/filepond.css">
+
 
     <!-- Select2 -->
 
@@ -36,53 +42,54 @@
     <script src="assets/static/js/initTheme.js"></script>
     <div id="app">
 
-        <?= $this->include('_sidebar') ?>
+        <div id="main" class="layout-horizontal">
 
-        <div id="main" class="layout-navbar navbar-fixed">
+            <?= $this->include('user/_header') ?>
 
-            <?= $this->include('_header') ?>
+            <div class="content-wrapper container">
 
-            <div id="main-content">
                 <div class="page-heading">
-                    <div class="page-title">
-                        <div class="row">
-                            <div class="col-8 col-sm-6 order-md-1 order-last">
-                                <h3><?= $title ?></h3>
-                            </div>
-                            <div class="col-4 col-sm-6 order-md-1 order-last">
-                                <div class="float-end">
-                                    <?php $this->renderSection('tools'); ?>
-                                </div>
-                            </div>
+                    <h3><?= $title ?></h3>
+                </div>
+                <div class="page-content">
+                    <section class="row">
+                        <?php $this->renderSection('content'); ?>
+                    </section>
+                </div>
+
+            </div>
+
+            <footer>
+                <div class="container">
+                    <div class="footer clearfix mb-0 text-muted">
+                        <div class="float-md-start text-center">
+                            <p>2023 &copy; Sistem Monitoring SMA YPPK Taruna Dharma</p>
+                        </div>
+                        <div class="float-md-end text-center">
+                            <p>
+                                Crafted with
+                                <span class="text-danger"><i class="bi bi-heart-fill icon-mid"></i></span>
+                                by <a href="https://github.com/abiisaleh">abiisaleh</a>
+                            </p>
                         </div>
                     </div>
                 </div>
-                <section class="section">
-                    <?php $this->renderSection('content'); ?>
-                </section>
-            </div>
-            <footer>
-                <div class="footer clearfix mb-0 text-muted">
-                    <div class="float-sm-start text-center">
-                        <p>2023 &copy; Monitoring SMA Jayapura</p>
-                    </div>
-                    <div class="float-sm-end text-center">
-                        <p>
-                            Crafted with
-                            <span class="text-danger"><i class="bi bi-heart-fill icon-mid"></i></span>
-                            by <a href="https://github.com/abiisaleh">abiisaleh</a>
-                        </p>
-                    </div>
-                </div>
             </footer>
+
         </div>
+
     </div>
     <script src="assets/static/js/components/dark.js"></script>
     <script src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/extensions/jquery/jquery.min.js"></script>
 
+    <script src="assets/extensions/apexcharts/apexcharts.min.js"></script>
+
     <!-- Select2 -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <!-- FilePond -->
+    <script src="assets/extensions/filepond/filepond.js"></script>
 
     <!-- Datatable -->
     <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
@@ -93,13 +100,6 @@
 
     <?php $this->renderSection('script'); ?>
     <script>
-        $(function() {
-            var url = window.location.href
-            $('.sidebar-item').filter(function() {
-                return this.id == '<?= $title ?>'
-            }).addClass('active')
-        })
-
         dataTable.responsive(true)
     </script>
 

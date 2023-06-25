@@ -12,7 +12,7 @@ class SiswaKelasModel extends Model
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
-    protected $protectFields    = true;
+    protected $protectFields    = false;
     protected $allowedFields    = [];
 
     // Dates
@@ -38,4 +38,23 @@ class SiswaKelasModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function siswa()
+    {
+        return $this->join('siswa', 'fkSiswa = nis');
+    }
+
+    public function Kelas($nis)
+    {
+        $TA = $this->db->table('TA')->countAll();
+
+        return $this
+            ->join('kelas', 'kelas_siswa_ta.fkKelas = kelas.id')
+            ->join('TA', 'kelas_siswa_ta.fkTA = TA.id')
+            ->join('wali_kelas', 'kelas_siswa_ta.fkKelas = kelas.id')
+            ->join('guru', 'fkGuru = nip')
+            ->where('kelas_siswa_ta.fkTA', $TA)
+            ->where('fkSiswa', $nis)
+            ->select('kelas.*, TA.tahun as tahun_ajaran, kelas_siswa_ta.id, guru.nama as wali_kelas');
+    }
 }

@@ -1,8 +1,6 @@
-<?php
-$this->extend('admin');
-$this->section('content');
-?>
+<?php $this->extend('admin/layout'); ?>
 
+<?php $this->section('content'); ?>
 <div class="row">
     <div class="col-md-6">
         <?= view_cell('SelectKelasCell', ['kode' => false, 'btn' => 'Proses']) ?>

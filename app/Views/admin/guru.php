@@ -1,4 +1,4 @@
-<?php $this->extend('admin'); ?>
+<?php $this->extend('admin/layout'); ?>
 
 <?php $this->section('tools'); ?>
 <button type="button" class="btn btn-primary block" data-bs-toggle="modal" data-bs-target="#modal-add">
@@ -23,7 +23,6 @@
       </div>
       <div class="modal-body">
         <form class="form form-horizontal row" id="form-add">
-          <?= csrf_field(); ?>
           <div class="form-body">
             <div class="row">
 
@@ -31,7 +30,7 @@
               <?= view_cell('InputCell', 'name=nama,text=Nama') ?>
               <?= view_cell('SelectCell', ['name' => 'gol', 'text' => 'Gol.', 'option' => ['I', 'II', 'III', 'IV']]) ?>
               <?= view_cell('SelectCell', ['name' => 'ruang', 'text' => 'Ruang', 'option' => ['a', 'b', 'c', 'd']]) ?>
-              <?= view_cell('InputCell', 'name=tmpt_lahir,text=Tempat Lahir') ?>
+              <?= view_cell('InputCell', 'name=tempt_lahir,text=Tempat Lahir') ?>
               <?= view_cell('InputCell', 'name=tgl_lahir,text=Tanggal Lahir,type=date') ?>
               <?= view_cell('SelectCell', ['name' => 'jk', 'text' => 'Jenis Kelamin', 'option' => ['L', 'P']]) ?>
               <?= view_cell('InputCell', 'name=telp,text=Telp,type=number') ?>
@@ -106,7 +105,7 @@
   $('#form-add').submit(function(e) {
     e.preventDefault()
     $.ajax({
-      url: window.location.href + '/save',
+      url: window.location.href,
       type: 'POST',
       data: $(this).serialize(),
       success: function() {
@@ -120,7 +119,7 @@
   //Hapus Data
   $('.table tbody').on('click', '.btnHapus', function() {
     var data = dataTable.row($(this).parents('tr')).data()
-    var id = data.id
+    var id = data.nip
 
     if (confirm('Anda yakin ingin menghapus data ini?')) {
       $.ajax({

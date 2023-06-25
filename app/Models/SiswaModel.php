@@ -43,4 +43,35 @@ class SiswaModel extends Model
     {
         return $this->like('nama', $query)->orLike('nis', $query);
     }
+
+    function kelas()
+    {
+        //cek tahun ajaran terbaru
+        $TA = $this->db->table('TA')->countAllResults();
+
+        return $this
+            ->join('kelas_siswa_ta', 'fkSiswa = nis')
+            ->join('kelas', 'fkKelas = kelas.id')
+            ->where('fkTA', $TA)
+            ->select('siswa.*, jurusan, kelas.id as id_kelas');
+    }
+
+    function nilai($idKelas)
+    {
+        return $this
+            ->join('kelas_siswa_ta', 'fkSiswa = nis')
+            ->join('nilai', 'nilai.fkSiswa = nis', 'left')
+            ->where('kelas_siswa_ta.fkKelas', $idKelas)
+            ->select('siswa.*')
+            ->selectAvg('nilai')
+            ->groupBy('nis');
+    }
+
+    function absensi($idKelas, $idTA)
+    {
+        return $this
+            ->join('kelas_siswa_ta', 'fkSiswa = nis')
+            ->where('kelas_siswa_ta.fkKelas', $idKelas)
+            ->where('kelas_siswa_ta.fkTA', $idTA);
+    }
 }

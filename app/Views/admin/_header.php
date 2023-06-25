@@ -1,4 +1,4 @@
-<header>
+<header class="mb-5">
     <nav class="navbar navbar-expand navbar-light navbar-top">
         <div class="container-fluid">
             <a href="javascript:void(0)" class="burger-btn d-block">
@@ -10,32 +10,13 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-lg-0">
-                    <?php if (!logged_in()) : ?>
-                        <li>
-                            <a href="login" class="btn icon icon-left btn-primary">
-                                <div class="d-none d-sm-inline">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
-                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                        <circle cx="12" cy="7" r="4"></circle>
-                                    </svg>
-                                </div>
-                                Masuk
-                            </a>
-                        </li>
-                    <?php endif; ?>
-                </ul>
-                <?php if (logged_in()) : ?>
-                    <?php
-                    $masyarakatModel = model('MasyarakatModel');
-                    $user = $masyarakatModel->user(user_id());
-                    ?>
+                <div class="ms-auto">
                     <div class="dropdown">
                         <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="user-menu d-flex">
                                 <div class="user-name text-end me-3">
-                                    <h6 class="mb-0 text-gray-600"><?= (in_groups('admin')) ? ucfirst(user()->username) : ucfirst($user['nama']) ?></h6>
-                                    <p class="mb-0 text-sm text-gray-600"><?= (in_groups('admin')) ? 'admin' : 'masyarakat' ?></p>
+                                    <h6 class="mb-0 text-gray-600"><?= (ucfirst(user()->username)) ?></h6>
+                                    <p class="mb-0 text-sm text-gray-600"><?= (in_groups('admin')) ? 'admin' : 'guru' ?></p>
                                 </div>
                                 <div class="user-img d-flex align-items-center">
                                     <div class="avatar avatar-md">
@@ -69,7 +50,7 @@
                             </li>
                         </ul>
                     </div>
-                <?php endif; ?>
+                </div>
             </div>
         </div>
     </nav>

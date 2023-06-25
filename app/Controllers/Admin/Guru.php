@@ -3,17 +3,12 @@
 
 namespace App\Controllers\Admin;
 
-use App\Models\GuruModel;
 use CodeIgniter\RESTful\ResourceController;
 
 class Guru extends ResourceController
 {
-    protected $model;
+    protected $modelName = 'App\Models\GuruModel';
 
-    public function __construct()
-    {
-        $this->model = new GuruModel();
-    }
     /**
      * Return an array of resource objects, themselves in array format
      *
@@ -59,8 +54,32 @@ class Guru extends ResourceController
      */
     public function create()
     {
+        $userModel = model('UserModel');
+
         $data = $this->request->getVar();
-        $this->model->save($data);
+        $guru = $this->model->find($data['nip']);
+
+        $user = [
+            'email' => $data['nip'] . '@demo.com',
+            'username' => $data['nip'],
+            'password' => $data['nip'],
+        ];
+
+        if (is_null($guru)) {
+            $this->model->insert($data);
+
+            //buatkan data user
+            $userModel
+                ->withGroup('guru')
+                ->insert($user);
+        } else {
+            $this->model->save($data);
+
+            //ubah data user
+            $user = $userModel
+                ->withGroup('guru')
+                ->save($user);
+        }
     }
 
     /**

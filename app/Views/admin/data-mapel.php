@@ -1,4 +1,4 @@
-<?php $this->extend('admin'); ?>
+<?php $this->extend('admin/layout'); ?>
 
 <?php $this->section('tools'); ?>
 <button type="button" class="btn btn-primary block" data-bs-toggle="modal" data-bs-target="#modal-add">

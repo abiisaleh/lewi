@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class WaliKelasModel extends Model
+class NilaiModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'wali_kelas';
+    protected $table            = 'nilai';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';

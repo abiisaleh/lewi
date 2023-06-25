@@ -11,12 +11,11 @@ class Pelanggaran extends Migration
         $this->forge->addField('id');
         $this->forge->addField([
             'nama' => [
-                'type' => 'VARCHAR',
-                'constraint' => 50
+                'type' => 'TEXT',
             ],
             'jenis' => [
-                'type' => 'INT',
-                'constraint' => 3
+                'type' => 'VARCHAR',
+                'constraint' => 50
             ],
             'skor' => [
                 'type' => 'INT',

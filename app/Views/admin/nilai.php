@@ -1,50 +1,35 @@
 <?php $this->extend('admin/layout'); ?>
 
 <?php $this->section('tools'); ?>
-<button class="btn btn-primary" type="button">
-    <i class="bi bi-printer"></i> Print
+<button type="button" class="btn btn-primary block" data-bs-toggle="modal" data-bs-target="#modal-add">
+    <i class="bi bi-gear"></i> <span class="d-none d-sm-inline">Pilih</span> Kelas
 </button>
+
 <?php $this->endsection('tools'); ?>
 
 <?php $this->section('content'); ?>
-<div class="row">
-    <div class="col-md-4">
-        <?= view_cell('SelectKelasCell', 'btn=Tampilkan') ?>
-    </div>
-    <div class="col-md-8">
-        <?= view_cell('TableCell') ?>
-    </div>
-</div>
+<?= view_cell('TableCell', 'id=tabel') ?>
 
-<!-- modal add -->
-<div class="modal fade text-left" id="modal-add">
+<!--Basic Modal -->
+<div class="modal modal-sm fade text-left" id="modal-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">
-                    Tambah Data
+                <h5 class="modal-title" id="myModalLabel1">
+                    Data Kelas
                 </h5>
                 <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
                     <i data-feather="x"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <form class="form form-horizontal row" id="form-add">
-                    <?= csrf_field(); ?>
+                <form class="form form-horizontal row" enctype="multipart/form-data" id="form-add">
                     <div class="form-body">
                         <div class="row">
-
-                            <?= view_cell('SelectCell', ['name' => 'mapel', 'text' => 'Mata Pelajaran', 'option' => ['I', 'II', 'III', 'IV']]) ?>
-                            <?= view_cell('SelectCell', ['name' => 'hari', 'text' => 'Hari', 'option' => ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']]) ?>
-                            <?= view_cell('InputCell', 'name=timestart,text=Jam Mulai,type=time') ?>
-                            <?= view_cell('InputCell', 'name=timeend,text=Jam Selesai,type=time') ?>
-
+                            <?= view_cell('SelectCell', ['name' => 'kelas', 'text' => 'Kelas', 'option' => ['-']]) ?>
                             <div class="col-sm-12 d-flex justify-content-end">
                                 <button type="submit" class="btn btn-primary me-1 mb-1">
                                     Submit
-                                </button>
-                                <button type="reset" class="btn btn-light-secondary me-1 mb-1">
-                                    Reset
                                 </button>
                             </div>
                         </div>
@@ -53,12 +38,12 @@
         </div>
     </div>
 </div>
-
 <?php $this->endsection('content'); ?>
 
 <?php $this->section('script'); ?>
 <script>
-    var dataTable = $('.table').DataTable({
+    var dataTable = $('#tabel').DataTable({
+        responsive: true,
         autoWidth: false,
         processing: true,
         language: {
@@ -66,20 +51,38 @@
         },
         ajax: window.location.href,
         columns: [{
-                "title": "Hari",
+                "title": "Nama",
+                "data": "nama"
             },
             {
-                "title": "Mata Pelajaran"
+                "title": "Jenis Kelamin",
+                "data": null,
+                "render": function(data) {
+                    return (data.jk == 'P') ? 'Perempuan' : 'Laki-laki'
+                }
             },
             {
-                "title": "Jam"
+                "title": "Nilai Rata2",
+                "data": "nilai"
             },
             {
                 "title": "Aksi",
+                "width": "10%",
                 "data": null,
-                "render": "<button class='btn btn-sm btn-danger btnHapus'>Hapus</button> <button class='btn btn-sm btn-warning btnEdit'>Edit</button>"
-            }
+                "render": function(data) {
+                    var url = '<?= base_url('admin/monitor/nilai') ?>' + '/' + data.nis
+                    return "<a class='btn btn-sm btn-success' href='" + url + "'>Detail</a>"
+                }
+            },
         ],
     })
+
+    //select2 kelas
+    $('#inputkelas').select2({
+        ajax: {
+            url: '/api/select2/kelas',
+        },
+        theme: "bootstrap-5",
+    });
 </script>
 <?php $this->endsection('script'); ?>

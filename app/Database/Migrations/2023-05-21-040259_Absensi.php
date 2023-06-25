@@ -14,15 +14,16 @@ class Absensi extends Migration
                 'type' => 'INT',
                 'constraint' => 3
             ],
-            'fkWali' => [
+            'fkKelasSiswaTa' => [
                 'type' => 'INT',
                 'constraint' => 3
             ],
             'tgl' => [
-                'type' => 'DATETIME',
+                'type' => 'DATE',
             ],
             'ket' => [
-                'type' => 'ENUM("hadir","sakit","izin","tanpa keterangan")',
+                'type' => 'ENUM("hadir","sakit","izin","alpa")',
+                'default' => 'hadir'
             ]
         ]);
         $this->forge->addPrimaryKey('id');

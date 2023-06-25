@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class WaliKelasModel extends Model
+class PelanggaranSiswaModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'wali_kelas';
+    protected $table            = 'pelanggaran_siswa';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
@@ -38,4 +38,21 @@ class WaliKelasModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function siswa()
+    {
+        return $this
+            ->join('pelanggaran', 'fkPelanggaran = pelanggaran.id', 'left')
+            ->join('siswa', 'fkSiswa = nis')
+            ->select('siswa.*, pelanggaran.nama as pelanggaran, skor, tgl');
+    }
+
+    public function skor($nis)
+    {
+        return $this
+            ->join('pelanggaran', 'fkPelanggaran = pelanggaran.id')
+            ->where('fkSiswa', $nis)
+            ->selectSum('skor')
+            ->first();
+    }
 }

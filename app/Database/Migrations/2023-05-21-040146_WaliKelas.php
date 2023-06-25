@@ -11,8 +11,8 @@ class WaliKelas extends Migration
         $this->forge->addField('id');
         $this->forge->addField([
             'fkGuru' => [
-                'type' => 'INT',
-                'constraint' => 3,
+                'type' => 'VARCHAR',
+                'constraint' => 18,
             ],
             'fkKelas' => [
                 'type' => 'INT',

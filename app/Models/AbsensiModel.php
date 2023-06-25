@@ -4,16 +4,16 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class WaliKelasModel extends Model
+class AbsensiModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'wali_kelas';
+    protected $table            = 'absensi';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
-    protected $protectFields    = false;
-    protected $allowedFields    = [];
+    protected $protectFields    = true;
+    protected $allowedFields    = ['fkSiswa', 'fkKelasSiswaTa', 'tgl', 'ket'];
 
     // Dates
     protected $useTimestamps = false;

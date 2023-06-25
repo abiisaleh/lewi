@@ -2,6 +2,8 @@
 
 namespace Config;
 
+use PhpParser\Node\Stmt\Static_;
+
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
@@ -30,25 +32,44 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->get('siswa', 'Home::siswa');
 
-$routes->get('admin', 'Admin\Dashboard:index');
+$routes->get('admin', 'Admin\Dashboard::index', ['filter' => 'role:admin,guru']);
+$routes->get('admin/rekomendasi/beasiswa', 'Admin\Rekomendasi::beasiswa', ['filter' => 'role:admin,guru']);
+$routes->get('admin/rekomendasi/prestasi', 'Admin\Rekomendasi::prestasi', ['filter' => 'role:admin,guru']);
 
-$routes->resource('admin/datamaster/kelas');
-$routes->resource('admin/datamaster/mapel');
-$routes->resource('admin/datamaster/pelanggaran');
+$routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'role:admin'], function ($routes) {
 
-$routes->resource('admin/siswa');
-$routes->get('api/select2/siswa', 'Admin\Siswa::select2');
+    $routes->resource('datamaster/kelas');
+    $routes->resource('datamaster/mapel');
+    $routes->resource('datamaster/pelanggaran');
 
-$routes->resource('admin/guru');
-$routes->get('api/select2/guru', 'Admin\Guru::select2');
+    $routes->resource('siswa');
 
-$routes->resource('admin/akademik');
+    $routes->resource('guru');
 
-$routes->resource('admin/jadwal');
+    $routes->resource('akademik');
+    $routes->post('akademik/walikelas', 'Akademik::walikelas');
+    $routes->post('akademik/siswa', 'Akademik::siswa');
 
-$routes->get('admin/rekomendasi/beasiswa', 'Admin\Rekomendasi::beasiswa');
-$routes->get('admin/rekomendasi/prestasi', 'Admin\Rekomendasi::prestasi');
+    $routes->group('monitor', ['namespace' => 'App\Controllers\Admin\Monitoring', 'filter' => 'role:guru'], function ($routes) {
+        $routes->resource('nilai');
+        $routes->get('pelanggaran', 'Pelanggaran::index');
+        $routes->post('pelanggaran', 'Pelanggaran::save');
+
+        $routes->get('absensi', 'Absensi::index');
+        $routes->post('absensi', 'Absensi::save');
+    });
+});
+
+$routes->group('api', function ($routes) {
+    $routes->get('select2/siswa', 'Admin\Siswa::select2');
+    $routes->get('select2/pelanggaran', 'Admin\Datamaster\Pelanggaran::select2');
+    $routes->get('select2/guru', 'Admin\Guru::select2');
+    $routes->get('select2/kelas', 'Admin\Datamaster\Kelas::select2');
+});
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
