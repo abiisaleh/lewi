@@ -4,6 +4,7 @@ namespace App\Controllers\Admin\Monitoring;
 
 use App\Models\MapelModel;
 use App\Models\NilaiModel;
+use App\Models\SiswaKelasModel;
 use App\Models\SiswaModel;
 use CodeIgniter\RESTful\ResourceController;
 
@@ -12,12 +13,14 @@ class Nilai extends ResourceController
     protected $NilaiModel;
     protected $SiswaModel;
     protected $MapelModel;
+    protected $SiswaKelasModel;
 
     public function __construct()
     {
         $this->NilaiModel = new NilaiModel();
         $this->SiswaModel = new SiswaModel();
         $this->MapelModel = new MapelModel();
+        $this->SiswaKelasModel = new SiswaKelasModel();
     }
 
     /**
@@ -38,6 +41,31 @@ class Nilai extends ResourceController
         if ($this->request->isAjax()) {
             $data['session'] = session()->getFlashdata('kelas');
             $data['data'] = $this->SiswaModel->nilai(session()->get('kelas'))->find();
+
+            //cek peringkat
+            if (!is_null($data['data'])) {
+                usort($data['data'], fn ($a, $b) => $b['nilai'] - $a['nilai']);
+
+                $TA = model('TaModel')->countAll();
+                $peringkat = 0;
+                foreach ($data['data'] as &$Siswa) {
+                    $peringkat += 1;
+                    //simpan data pringkat
+                    $Siswa['peringkat'] = $peringkat;
+
+                    $idKelasSiswa = $this->SiswaKelasModel
+                        ->where('fkKelas', session()->get('kelas'))
+                        ->where('fkSiswa', $Siswa['nis'])
+                        ->where('fkTA', $TA)
+                        ->first()['id'];
+
+                    $this->SiswaKelasModel
+                        ->save([
+                            'id' => $idKelasSiswa,
+                            'peringkat' => $peringkat
+                        ]);
+                }
+            }
 
             return $this->response->setJSON($data);
         } else {

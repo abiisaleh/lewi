@@ -26,10 +26,6 @@ class NilaiSemester extends Migration
                 'type' => 'INT',
                 'constraint' => 3
             ],
-            'peringkat' => [
-                'type' => 'INT',
-                'constraint' => 3
-            ]
         ]);
         $this->forge->addPrimaryKey('id');
         $this->forge->createTable('nilai');

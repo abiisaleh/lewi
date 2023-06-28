@@ -18,6 +18,10 @@ class KelasSiswa extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 10
             ],
+            'peringkat' => [
+                'type' => 'INT',
+                'constraint' => 2
+            ],
             'fkTA' => [
                 'type' => 'INT',
                 'constraint' => 3

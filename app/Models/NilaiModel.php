@@ -38,4 +38,11 @@ class NilaiModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function RataRata($nis)
+    {
+        return $this
+            ->where('fkSiswa', $nis)
+            ->selectAvg('nilai');
+    }
 }

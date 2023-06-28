@@ -2,11 +2,12 @@
 
 <?php $this->section('content'); ?>
 <!-- HOME -->
-<div class="row mb-5" id="beranda">
+<div class="row mb-5" id="home">
     <div class="col-md-8 mx-auto text-center pt-3 pb-5">
         <h2>Sistem Informasi Monitoring pada SMA YPPK Taruna Dharma</h2>
-        <p class="pt-2 pb-5 px-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti perspiciatis ea enim quidem beatae reiciendis ab ipsam repudiandae dolore aliquid voluptas labore nihil magni qui, impedit dolor quo nostrum nam.</p>
-
+        <p class="pt-2 pb-5 px-2">
+            SMK YPPK Jayapura memiliki sistem monitoring kesiswaan yang memungkinkan pemantauan dan pengelolaan kehadiran, kinerja akademik, dan disiplin siswa secara efisien.
+        </p>
         <form action="siswa" method="GET">
             <div class="d-flex">
                 <div class="col-lg-8 col-10 mx-auto">
@@ -22,7 +23,7 @@
 <!-- END HOME -->
 
 <!-- PROFILE -->
-<div class="row mb-5">
+<div class="row mb-5" id="profile">
     <div class="col py-3">
         <div class="card">
             <div class="card-content">
@@ -48,7 +49,7 @@
 <!-- END PROFILE -->
 
 <!-- ABOUT -->
-<div class="row mb-5">
+<div class="row mb-5" id="about">
     <h3 class="text-center pb-3">Tentang</h3>
     <div class="row">
         <div class="col-lg-4 col-12">

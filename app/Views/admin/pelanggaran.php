@@ -95,7 +95,7 @@
             },
         ],
         order: [
-            [1, 'desc']
+            [0, 'desc']
         ]
     })
 
@@ -109,7 +109,7 @@
                 fkSiswa: $('#inputfkSiswa').val(),
                 fkPelanggaran: $('#inputfkPelanggaran').val(),
             },
-            success: function() {
+            success: function(data) {
                 dataTable.ajax.reload()
             }
         })

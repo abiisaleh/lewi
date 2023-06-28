@@ -88,6 +88,21 @@ $uri2 = $uri[2] ?? null;
                         </a>
                     </li>
 
+                    <li class="sidebar-item has-sub <?= ($uri1 == 'rekomendasi') ? 'active' : '' ?>" id="Data Pelanggaran">
+                        <a href="#" class="sidebar-link">
+                            <i class="bi bi-pie-chart-fill"></i>
+                            <span>Rekomendasi</span>
+                        </a>
+                        <ul class="submenu <?= ($uri1 == 'rekomendasi') ? 'menu-open' : '' ?>">
+                            <li class="submenu-item <?= ($uri2 == 'prestasi') ? 'active' : '' ?>">
+                                <a href="admin/rekomendasi/prestasi">Prestasi</a>
+                            </li>
+                            <li class="submenu-item <?= ($uri2 == 'beasiswa') ? 'active' : '' ?>">
+                                <a href="admin/rekomendasi/beasiswa">Beasiswa</a>
+                            </li>
+                        </ul>
+                    </li>
+
                 <?php elseif (in_groups('guru')) : ?>
 
                     <li class="sidebar-item <?= ($uri2 == 'nilai') ? 'active' : '' ?>" id="Jadwal Pelajaran">
@@ -112,21 +127,6 @@ $uri2 = $uri[2] ?? null;
                     </li>
 
                 <?php endif; ?>
-
-                <li class="sidebar-item has-sub <?= ($uri1 == 'rekomendasi') ? 'active' : '' ?>" id="Data Pelanggaran">
-                    <a href="#" class="sidebar-link">
-                        <i class="bi bi-pie-chart-fill"></i>
-                        <span>Rekomendasi</span>
-                    </a>
-                    <ul class="submenu <?= ($uri1 == 'rekomendasi') ? 'menu-open' : '' ?>">
-                        <li class="submenu-item <?= ($uri2 == 'prestasi') ? 'active' : '' ?>">
-                            <a href="admin/rekomendasi/prestasi">Prestasi</a>
-                        </li>
-                        <li class="submenu-item <?= ($uri2 == 'beasiswa') ? 'active' : '' ?>">
-                            <a href="admin/rekomendasi/beasiswa">Beasiswa</a>
-                        </li>
-                    </ul>
-                </li>
 
             </ul>
         </div>

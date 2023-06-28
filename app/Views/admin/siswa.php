@@ -48,10 +48,9 @@
                     <fieldset class="form-group">
                       <select class="form-select" id="inputpenghasilan" name="penghasilan_ortu">
                         <option>-</option>
-                        <option value="1">
-                          < 3,5 Juta</option>
+                        <option value="1">&lt; 3,5 Juta</option>
                         <option value="2">3,5 Juta - 5 Juta</option>
-                        <option value="3">> 5 Juta</option>
+                        <option value="3">&gt; 5 Juta</option>
                       </select>
                     </fieldset>
                   </div>
@@ -65,7 +64,7 @@
                         <option>-</option>
                         <option value="1">1 Anak</option>
                         <option value="2">2 Anak</option>
-                        <option value="3">> 2 Anak</option>
+                        <option value="3">&gt; 2 Anak</option>
                       </select>
                     </fieldset>
                   </div>
@@ -77,10 +76,9 @@
                     <fieldset class="form-group">
                       <select class="form-select" id="inputjarak" name="jarak_rumah">
                         <option>-</option>
-                        <option value="1">
-                          < 500m</option>
+                        <option value="1">&lt; 500m</option>
                         <option value="2">500m - 1km</option>
-                        <option value="3">> 1km</option>
+                        <option value="3">&gt; 1km</option>
                       </select>
                     </fieldset>
                   </div>

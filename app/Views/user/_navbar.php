@@ -2,21 +2,21 @@
     <div class="container">
         <ul class="mx-auto">
             <li class="menu-item active">
-                <a href="index.html" class='menu-link'>
+                <a href="#home" class='menu-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span>Beranda</span>
                 </a>
             </li>
 
             <li class="menu-item  ">
-                <a href="index.html" class='menu-link'>
+                <a href="#cari" class='menu-link'>
                     <i class="bi bi-search"></i>
                     <span>Cari Siswa</span>
                 </a>
             </li>
 
             <li class="menu-item  has-sub">
-                <a href="#" class='menu-link'>
+                <a href="#profile" class='menu-link'>
                     <i class="bi bi-stack"></i>
                     <span>Profile</span>
                 </a>
@@ -55,7 +55,7 @@
             </li>
 
             <li class="menu-item">
-                <a href="index.html" class='menu-link'>
+                <a href="#about" class='menu-link'>
                     <i class="bi bi-life-preserver"></i>
                     <span>Tentang</span>
                 </a>

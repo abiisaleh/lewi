@@ -71,7 +71,7 @@
                         <select class="form-select" name="ket" id="inputKeterangan">
                             <option></option>
                             <option>hadir</option>
-                            <option>apla</option>
+                            <option>alpa</option>
                             <option>sakit</option>
                             <option>izin</option>         
                         </select>

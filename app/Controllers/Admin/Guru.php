@@ -4,6 +4,9 @@
 namespace App\Controllers\Admin;
 
 use CodeIgniter\RESTful\ResourceController;
+use Myth\Auth\Entities\User;
+use Myth\Auth\Models\UserModel;
+
 
 class Guru extends ResourceController
 {
@@ -54,32 +57,27 @@ class Guru extends ResourceController
      */
     public function create()
     {
-        $userModel = model('UserModel');
-
         $data = $this->request->getVar();
         $guru = $this->model->find($data['nip']);
 
-        $user = [
+        //simpan data guru
+        if (is_null($guru)) {
+            $this->model->insert($data);
+        } else {
+            $this->model->save($data);
+        }
+
+        //buatkan data user
+        $users = model(UserModel::class);
+        $user = new User([
             'email' => $data['nip'] . '@demo.com',
             'username' => $data['nip'],
             'password' => $data['nip'],
-        ];
-
-        if (is_null($guru)) {
-            $this->model->insert($data);
-
-            //buatkan data user
-            $userModel
-                ->withGroup('guru')
-                ->insert($user);
-        } else {
-            $this->model->save($data);
-
-            //ubah data user
-            $user = $userModel
-                ->withGroup('guru')
-                ->save($user);
-        }
+        ]);
+        $user->activate();
+        $users
+            ->withGroup('guru')
+            ->save($user);
     }
 
     /**

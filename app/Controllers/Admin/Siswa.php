@@ -5,6 +5,8 @@ namespace App\Controllers\Admin;
 
 use App\Models\SiswaModel;
 use CodeIgniter\RESTful\ResourceController;
+use Myth\Auth\Entities\User;
+use Myth\Auth\Models\UserModel;
 
 class Siswa extends ResourceController
 {
@@ -61,6 +63,18 @@ class Siswa extends ResourceController
     {
         $data = $this->request->getVar();
         $this->model->save($data);
+
+        //buatkan data user
+        $users = model(UserModel::class);
+        $user = new User([
+            'email' => $data['nis'] . '@demo.com',
+            'username' => $data['nis'],
+            'password' => $data['nis'],
+        ]);
+        $user->activate();
+        $users
+            ->withGroup('siswa')
+            ->save($user);
     }
 
     /**

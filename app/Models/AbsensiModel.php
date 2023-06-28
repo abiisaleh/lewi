@@ -38,4 +38,22 @@ class AbsensiModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function kehadiran($nis, $TA)
+    {
+        $absensi = $this
+            ->join('kelas_siswa_ta', 'kelas_siswa_ta.id = fkKelasSiswaTa')
+            ->where('absensi.fkSiswa', $nis)
+            ->where('fkTA', $TA);
+
+        $pertemuan = $absensi
+            ->countAllResults();
+
+        $hadir = $absensi
+            ->where('ket', 'hadir')
+            ->countAllResults();
+
+
+        return $pertemuan - $hadir;
+    }
 }

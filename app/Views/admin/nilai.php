@@ -62,8 +62,12 @@
                 }
             },
             {
-                "title": "Nilai Rata2",
+                "title": "Nilai rata-rata",
                 "data": "nilai"
+            },
+            {
+                "title": "Peringkat",
+                "data": "peringkat"
             },
             {
                 "title": "Aksi",

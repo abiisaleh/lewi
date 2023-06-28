@@ -57,4 +57,15 @@ class SiswaKelasModel extends Model
             ->where('fkSiswa', $nis)
             ->select('kelas.*, TA.tahun as tahun_ajaran, kelas_siswa_ta.id, guru.nama as wali_kelas');
     }
+
+    public function JurusanKelas($tingkat, $jurusan, $TA)
+    {
+        return $this
+            ->join('kelas', 'fkKelas = kelas.id')
+            ->join('siswa', 'fkSiswa = siswa.nis', 'left')
+            ->where('tingkat', $tingkat)
+            ->where('jurusan', $jurusan)
+            ->where('fkTA', $TA)
+            ->select('fkSiswa as nis, nama');
+    }
 }

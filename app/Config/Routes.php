@@ -2,8 +2,6 @@
 
 namespace Config;
 
-use PhpParser\Node\Stmt\Static_;
-
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
@@ -35,9 +33,6 @@ $routes->get('/', 'Home::index');
 $routes->get('siswa', 'Home::siswa');
 
 $routes->get('admin', 'Admin\Dashboard::index', ['filter' => 'role:admin,guru']);
-$routes->get('admin/rekomendasi/beasiswa', 'Admin\Rekomendasi::beasiswa', ['filter' => 'role:admin,guru']);
-$routes->get('admin/rekomendasi/prestasi', 'Admin\Rekomendasi::prestasi', ['filter' => 'role:admin,guru']);
-
 $routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'role:admin'], function ($routes) {
 
     $routes->resource('datamaster/kelas');
@@ -54,12 +49,19 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'ro
 
     $routes->group('monitor', ['namespace' => 'App\Controllers\Admin\Monitoring', 'filter' => 'role:guru'], function ($routes) {
         $routes->resource('nilai');
+
         $routes->get('pelanggaran', 'Pelanggaran::index');
         $routes->post('pelanggaran', 'Pelanggaran::save');
 
         $routes->get('absensi', 'Absensi::index');
         $routes->post('absensi', 'Absensi::save');
     });
+
+    $routes->get('rekomendasi/beasiswa', 'Rekomendasi::beasiswa');
+    $routes->post('rekomendasi/beasiswa', 'Rekomendasi::beasiswa_get');
+
+    $routes->get('rekomendasi/prestasi', 'Rekomendasi::prestasi');
+    $routes->post('rekomendasi/prestasi', 'Rekomendasi::prestasi_get');
 });
 
 $routes->group('api', function ($routes) {
