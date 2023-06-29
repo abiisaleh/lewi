@@ -12,7 +12,6 @@ class Guru extends Migration
             'nip' => [
                 'type' => 'VARCHAR',
                 'constraint' => 18,
-
             ],
             'nama' => [
                 'type' => 'VARCHAR',
@@ -26,13 +25,13 @@ class Guru extends Migration
             ],
             'tempt_lahir' => [
                 'type' => 'VARCHAR',
-                'constraint' => 30, 
+                'constraint' => 30,
             ],
             'tgl_lahir' => [
                 'type' => 'DATE'
             ],
             'jk' => [
-                'type' => 'ENUM("L","P")'
+                'type' => 'ENUM("Laki-laki","Perempuan")'
             ],
             'telp' => [
                 'type' => 'VARCHAR',

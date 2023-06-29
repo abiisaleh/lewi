@@ -67,17 +67,17 @@ $uri2 = $uri[2] ?? null;
                         </ul>
                     </li>
 
+                    <li class="sidebar-item <?= ($uri1 == 'guru') ? 'active' : '' ?>">
+                        <a href="admin/guru" class="sidebar-link">
+                            <i class="bi bi-person-workspace"></i>
+                            <span>Data Guru</span>
+                        </a>
+                    </li>
+
                     <li class="sidebar-item <?= ($uri1 == 'siswa') ? 'active' : '' ?>">
                         <a href="admin/siswa" class="sidebar-link">
                             <i class="bi bi-people-fill"></i>
                             <span>Data Siswa</span>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-item <?= ($uri1 == 'guru') ? 'active' : '' ?>">
-                        <a href="admin/guru" class="sidebar-link">
-                            <i class="bi bi-person-fill"></i>
-                            <span>Data Guru</span>
                         </a>
                     </li>
 

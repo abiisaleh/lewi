@@ -39,6 +39,7 @@ class Akademik extends ResourceController
         } else {
             helper('auth');
             $data['title'] = 'Data Akademik';
+            $data['subtitle'] = 'Semester I T.A. 2019/2020';
             return view('admin/akademik', $data);
         }
     }

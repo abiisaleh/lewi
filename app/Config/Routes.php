@@ -46,6 +46,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'ro
     $routes->resource('akademik');
     $routes->post('akademik/walikelas', 'Akademik::walikelas');
     $routes->post('akademik/siswa', 'Akademik::siswa');
+    $routes->resource('jadwal');
 
     $routes->group('monitor', ['namespace' => 'App\Controllers\Admin\Monitoring', 'filter' => 'role:guru'], function ($routes) {
         $routes->resource('nilai');

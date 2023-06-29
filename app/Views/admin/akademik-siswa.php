@@ -1,20 +1,6 @@
 <?php $this->extend('admin/layout'); ?>
 
 <?php $this->section('content'); ?>
-<div class="row">
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title mb-3">Upload Jadwal</h5>
-        <div class="form-body">
-          <p class="card-text">Unggah jadwal pelajaran dengan format <code>.pdf</code></p>
-          <!-- Basic file uploader -->
-          <input type="file" class="basic-filepond">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 <div class="col">
   <div class="card">
     <div class="card-body">
@@ -45,15 +31,6 @@
 
 <?php $this->section('script'); ?>
 <script>
-  // Filepond: Basic
-  FilePond.create(document.querySelector(".basic-filepond"), {
-    credits: null,
-    allowImagePreview: false,
-    allowMultiple: false,
-    allowFileEncode: false,
-    required: false,
-  });
-
   $('#inputfkSiswa').select2({
     ajax: {
       url: '/api/select2/siswa',
@@ -79,10 +56,7 @@
       },
       {
         "title": "Jenis Kelamin",
-        "data": null,
-        "render": function(data) {
-          return (data.jk == 'P') ? 'Perempuan' : 'Laki-laki'
-        }
+        "data": "jk",
       },
       {
         "title": "Aksi",

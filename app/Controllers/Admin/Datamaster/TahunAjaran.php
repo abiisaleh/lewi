@@ -13,7 +13,7 @@ class TahunAjaran extends ResourceController
 
     public function __construct()
     {
-        $this->model = new TaModel();   
+        $this->model = new TaModel();
     }
     /**
      * Return an array of resource objects, themselves in array format
@@ -22,16 +22,7 @@ class TahunAjaran extends ResourceController
      */
     public function index()
     {
-        if ($this->request->isAjax()) {
-            $data['data'] = $this->model->findAll();
-
-            return $this->response->setJSON($data);
-
-        } else {
-            helper('auth');
-            $data['title'] = 'Data Tahun Ajaran';
-            return view('admin/data-ta',$data);
-        }
+        //
     }
 
     /**

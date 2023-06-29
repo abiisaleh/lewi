@@ -18,6 +18,10 @@ class WaliKelas extends Migration
                 'type' => 'INT',
                 'constraint' => 3,
             ],
+            'jadwal' => [
+                'type' => 'VARCHAR',
+                'constraint' => 30,
+            ],
             'fkTA' => [
                 'type' => 'INT',
                 'constraint' => 3,

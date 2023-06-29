@@ -33,7 +33,7 @@
                   <?= view_cell('InputCell', 'name=alamat,text=Alamat') ?>
                   <?= view_cell('InputCell', 'name=tempt_lahir,text=Tempat Lahir') ?>
                   <?= view_cell('InputCell', 'name=tgl_lahir,text=Tanggal Lahir,type=date') ?>
-                  <?= view_cell('SelectCell', ['name' => 'jk', 'text' => 'Jenis Kelamin', 'option' => ['L', 'P']]) ?>
+                  <?= view_cell('SelectCell', ['name' => 'jk', 'text' => 'Jenis Kelamin', 'option' => ['Laki-laki', 'Perempuan']]) ?>
                   <?= view_cell('SelectCell', ['name' => 'agama', 'text' => 'Agama', 'option' => ['Kristen', 'Islam', 'Katholik', 'Hindu', 'Budha', 'Konghuchu']]) ?>
                 </div>
               </div>

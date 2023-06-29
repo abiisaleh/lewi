@@ -1,6 +1,16 @@
 <div class="card">
     <div class="card-header pb-1">
-        <h4>Hasil</h4>
+        <div class="row">
+            <div class="col py-1">
+                <h4>Hasil</h4>
+            </div>
+            <div class="col-auto">
+                <!-- Button trigger for basic modal -->
+                <button type="button" class="btn btn-outline-secondary btn-sm block" data-bs-toggle="modal" data-bs-target="#default">
+                    <i class="bi bi-terminal"></i>
+                </button>
+            </div>
+        </div>
     </div>
     <div class="card-content pb-4">
         <?php (count($siswa) < 3) ? $max = count($siswa) : $max = 3 ?>

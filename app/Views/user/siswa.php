@@ -84,7 +84,7 @@
                                         <p>Skor pelanggaran</p>
                                     </div>
                                     <div class="col-7">
-                                        <p>: <?= $skorPelanggaran['skor'] ?></p>
+                                        <p>: <?= $skorPelanggaran['skor'] ?? 0 ?></p>
                                     </div>
                                 </div>
                                 <p class="card-text">Download <a href="jadwal">jadwal pelajaran</a></p>
@@ -114,7 +114,7 @@
                             <h4>Pelanggaran</h4>
                         </div>
                         <div class="card-body">
-                            <table class="table table-striped" id="table1">
+                            <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -146,6 +146,15 @@
 
 <?php $this->section('script'); ?>
 <script>
+    $('.table').DataTable({
+        searching: false,
+        lengthChange: false,
+        responsive: true,
+        language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.13.4/i18n/id.json'
+        },
+    })
+
     var nilai = {
         annotations: {
             position: 'back'

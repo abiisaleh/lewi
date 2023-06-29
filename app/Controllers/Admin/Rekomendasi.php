@@ -61,7 +61,9 @@ class Rekomendasi extends BaseController
             $Peringkat = $this->SiswaKelasModel->where('fkSiswa', $Siswa['nis'])->where('fkTA', $TA)->first()['peringkat'];
 
             //konversi peringkat
-            if ($Peringkat == 1)
+            if ($Peringkat == 0)
+                $Siswa['Peringkat'] = 0;
+            elseif ($Peringkat == 1)
                 $Siswa['Peringkat'] = 100;
             elseif ($Peringkat == 2)
                 $Siswa['Peringkat'] = 90;
@@ -106,7 +108,10 @@ class Rekomendasi extends BaseController
         // Menggunakan fungsi usort() untuk mengurutkan data berdasarkan hasil
         usort($siswa, fn ($a, $b) => $b['hasil'] - $a['hasil']);
 
-        echo view('admin/rekomendasi-result', ['siswa' => $siswa]);
+        return $this->response->setJSON([
+            'result' => view('admin/rekomendasi-result', ['siswa' => $siswa]),
+            'perhitungan' => view('admin/rekomendasi-perhitungan-beasiswa', ['kriteria' => $kriteria, 'siswa' => $siswa])
+        ]);
     }
 
     public function prestasi()
@@ -139,9 +144,14 @@ class Rekomendasi extends BaseController
 
             //peringkat kelas,
             $Peringkat = $this->SiswaKelasModel->where('fkSiswa', $Siswa['nis'])->where('fkTA', $TA)->first()['peringkat'];
+            $Siswa['peringkat_kelas'] = $Peringkat;
+
+            // dd($Peringkat);
 
             //konversi peringkat
-            if ($Peringkat == 1)
+            if ($Peringkat == 0)
+                $Siswa['Peringkat'] = 0;
+            elseif ($Peringkat == 1)
                 $Siswa['Peringkat'] = 100;
             elseif ($Peringkat == 2)
                 $Siswa['Peringkat'] = 90;
@@ -178,6 +188,9 @@ class Rekomendasi extends BaseController
         // Menggunakan fungsi usort() untuk mengurutkan data berdasarkan hasil
         usort($siswa, fn ($a, $b) => $b['hasil'] - $a['hasil']);
 
-        echo view('admin/rekomendasi-result', ['siswa' => $siswa]);
+        return $this->response->setJSON([
+            'result' => view('admin/rekomendasi-result', ['siswa' => $siswa]),
+            'perhitungan' => view('admin/rekomendasi-perhitungan-prestasi', ['kriteria' => $kriteria, 'siswa' => $siswa])
+        ]);
     }
 }

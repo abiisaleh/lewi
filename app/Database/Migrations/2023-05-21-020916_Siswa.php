@@ -13,18 +13,17 @@ class Siswa extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 10,
                 'unique'    => true,
-                'auto_increment' => false   
+                'auto_increment' => false
             ],
             'nama' => [
                 'type' => 'VARCHAR',
-                'constraint' => 30, 
+                'constraint' => 30,
             ],
             'alamat' => [
                 'type' => 'TEXT'
             ],
             'jk' => [
-                'type' => 'ENUM("L","P")',
-                'default' => 'L'
+                'type' => 'ENUM("Laki-laki","Perempuan")'
             ],
             'tempt_lahir' => [
                 'type' => 'TEXT',
@@ -63,6 +62,10 @@ class Siswa extends Migration
                 'type' => 'INT',
                 'constraint' => 3,
                 'null' => true
+            ],
+            'status' => [
+                'type' => 'ENUM("Aktif", "Tidak Aktif")',
+                'default' => 'Aktif',
             ],
         ]);
         $this->forge->addPrimaryKey('nim');

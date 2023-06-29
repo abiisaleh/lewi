@@ -13,7 +13,7 @@
                         <div class="form-body">
                             <div class="row">
                                 <?= view_cell('SelectCell', ['name' => 'tingkat', 'text' => 'Tingkat', 'option' => ['X', 'XI', 'XII']]) ?>
-                                <?= view_cell('SelectCell', ['name' => 'jurusan', 'text' => 'Jurusan', 'option' => ['IPA', 'IPS', 'BAHASA']]) ?>
+                                <?= view_cell('SelectCell', ['name' => 'jurusan', 'text' => 'Jurusan', 'option' => ['', 'IPA', 'IPS', 'BAHASA']]) ?>
                             </div>
                         </div>
                     </div>
@@ -30,6 +30,21 @@
     </div>
 
     <div class="col-md-6 animate__bounceIn d-none" id="result"></div>
+</div>
+
+<!--Basic Modal -->
+<div class="modal modal-lg fade text-left" id="default" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel1">Perhitungan</h5>
+                <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <div class="modal-body"></div>
+        </div>
+    </div>
 </div>
 
 <?php
@@ -53,12 +68,14 @@ $this->section('script');
             success: function(response) {
                 // Menghandle respon sukses dari server
                 $('#result').empty()
+                $('.modal-body').empty()
                 $('#result').addClass('d-none')
 
                 setTimeout(function() {
                     // Perintah yang akan dijalankan setelah penundaan
                     // Contoh: Mengubah teks pada elemen dengan ID tertentu setelah 1 detik
-                    $('#result').append(response)
+                    $('#result').append(response.result)
+                    $('.modal-body').append(response.perhitungan)
                     $('#result').removeClass('d-none')
                 }, 500);
             },

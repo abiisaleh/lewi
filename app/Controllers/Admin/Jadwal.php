@@ -7,12 +7,8 @@ use CodeIgniter\RESTful\ResourceController;
 
 class Jadwal extends ResourceController
 {
-    protected $model;
+    protected $modelName = 'App\Models\WaliKelasModel';
 
-    public function __construct()
-    {
-        $this->model = new JadwalModel();
-    }
     /**
      * Return an array of resource objects, themselves in array format
      *
@@ -20,15 +16,7 @@ class Jadwal extends ResourceController
      */
     public function index()
     {
-        if ($this->request->isAjax()) {
-            $data['data'] = $this->model->findAll();
-            return $this->response->setJSON($data);
-        } else {
-            helper('auth');
-            $data['title'] = 'Jadwal Pelajaran';
-            $data['kelas'] = model('KelasModel')->findAll();
-            return view('admin/jadwal', $data);
-        }
+        //
     }
 
     /**
@@ -58,7 +46,26 @@ class Jadwal extends ResourceController
      */
     public function create()
     {
-        $data = $this->request->getVar();
+        $data = $this->request->getPost();
+        print_r($data);
+        dd($data);
+
+        // Cek data id wali kelas.
+        $data['id'] = $this->model
+            ->where('fkKelas', $data['fkKelas'])
+            ->where('fkTA', $data['fkTA'])
+            ->first();
+
+
+        $jadwal = $this->request->getFile();
+        $jadwalName = $jadwal->getRandomName();
+        $jadwal->move('uploads', $jadwalName);
+
+        $data = [
+            'id' => $this->request->getPost('id'),
+            'jadwal' => $jadwalName
+        ];
+
         $this->model->save($data);
     }
 

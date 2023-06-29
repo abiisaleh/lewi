@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Login - Digilib</title>
+	<title>Login - Sistem Monitoring SMA YPPK</title>
 
 	<link rel="shortcut icon" href="./assets/compiled/png/favicon.png" type="image/x-icon" />
 	<link rel="stylesheet" href="./assets/compiled/css/app.css" />

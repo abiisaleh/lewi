@@ -32,7 +32,7 @@
               <?= view_cell('SelectCell', ['name' => 'ruang', 'text' => 'Ruang', 'option' => ['a', 'b', 'c', 'd']]) ?>
               <?= view_cell('InputCell', 'name=tempt_lahir,text=Tempat Lahir') ?>
               <?= view_cell('InputCell', 'name=tgl_lahir,text=Tanggal Lahir,type=date') ?>
-              <?= view_cell('SelectCell', ['name' => 'jk', 'text' => 'Jenis Kelamin', 'option' => ['L', 'P']]) ?>
+              <?= view_cell('SelectCell', ['name' => 'jk', 'text' => 'Jenis Kelamin', 'option' => ['Laki-laki', 'Perempuan']]) ?>
               <?= view_cell('InputCell', 'name=telp,text=Telp,type=number') ?>
 
               <div class="col-sm-12 d-flex justify-content-end">

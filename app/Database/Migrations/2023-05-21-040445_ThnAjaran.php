@@ -10,9 +10,14 @@ class ThnAjaran extends Migration
     {
         $this->forge->addField('id');
         $this->forge->addField([
-            'tahun' => [
-                'type'=> 'VARCHAR',
-                'constraint' => 9
+            'tahun awal' => [
+                'type' => 'YEAR',
+            ],
+            'tahun akhir' => [
+                'type' => 'YEAR',
+            ],
+            'semester' => [
+                'type' => 'ENUM("I","II")',
             ]
         ]);
         $this->forge->addPrimaryKey('id');

@@ -24,14 +24,28 @@
           <div class="form-body">
             <div class="row">
 
-              <?= view_cell('InputCell', ['name' => 'judul', 'text' => 'Tahun Ajaran']) ?>
+              <div class="col-md-4">
+                <label for="inputTahun">Tahun Ajaran</label>
+              </div>
+              <div class="col-md-8 form-group">
+                <div class="row">
+                  <div class="col-5">
+                    <input type="number" id="inputTahun" class="form-control" name="tahun awal" placeholder="-" min="2000" maxlength="4" />
+                  </div>
+                  <div class="col-2">
+                    <p class="mt-2 text-center">/</p>
+                  </div>
+                  <div class="col-5">
+                    <input type="number" id="inputTahun2" class="form-control" name="tahun akhir" placeholder="-" min="2000" maxlength="4" />
+                  </div>
+                </div>
+              </div>
+
+              <?= view_cell('SelectCell', ['name' => 'semester', 'text' => 'Semester', 'option' => ['I', 'II']]) ?>
 
               <div class="col-sm-12 d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary me-1 mb-1">
                   Submit
-                </button>
-                <button type="reset" class="btn btn-light-secondary me-1 mb-1">
-                  Reset
                 </button>
               </div>
             </div>
@@ -44,31 +58,60 @@
 </div>
 
 <!-- Modal Wali Kelas -->
-<div class="modal fade text-left" id="modal-wali" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="myModalLabel1">
-          Wali Kelas
-        </h5>
-        <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
-          <i data-feather="x"></i>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form class="form form-horizontal row" id="form-wali">
-          <?= csrf_field(); ?>
-          <input type="hidden" id="inputfkKelas">
-          <div class="form-body">
-            <div class="row">
-              <?= view_cell('SelectCell', ['name' => 'fkGuru', 'text' => 'Nama Guru', 'option' => ['-']]) ?>
-              <div class="col-sm-12 d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary me-1 mb-1">
-                  Simpan
-                </button>
+<div>
+  <div class="modal fade text-left" id="modal-wali" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="myModalLabel1">
+            Wali Kelas
+          </h5>
+          <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
+            <i data-feather="x"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="form form-horizontal row" id="form-wali">
+            <?= csrf_field(); ?>
+            <input type="hidden" id="inputfkKelas">
+            <div class="form-body">
+              <div class="row">
+                <?= view_cell('SelectCell', ['name' => 'fkGuru', 'text' => 'Nama Guru', 'option' => ['-']]) ?>
+                <div class="col-sm-12 d-flex justify-content-end">
+                  <button type="submit" class="btn btn-primary me-1 mb-1">
+                    Simpan
+                  </button>
+                </div>
               </div>
-            </div>
-        </form>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Jadwal -->
+<div>
+  <div class="modal fade text-left" id="modal-jadwal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="myModalLabel1">
+            Jadwal pelajaran
+          </h5>
+          <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
+            <i data-feather="x"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="mx-2">
+            <form class="form form-horizontal row" id="form-jadwal">
+              <!-- Basic file uploader -->
+              <input type="file" class="basic-filepond">
+              <p class="card-text">Unggah jadwal pelajaran dengan format <code>.pdf</code></p>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -86,6 +129,15 @@
 
 <?php $this->section('script'); ?>
 <script>
+  // Filepond: Basic
+  FilePond.create(document.querySelector(".basic-filepond"), {
+    credits: null,
+    allowImagePreview: false,
+    allowMultiple: false,
+    allowFileEncode: false,
+    required: false,
+  });
+
   $('#inputfkGuru').select2({
     ajax: {
       url: '/api/select2/guru',
@@ -124,9 +176,9 @@
         "data": null,
         "render": function(data) {
           return `
-          <button class='btn btn-sm btn-warning btnEdit'>wali</button>
+          <button class='btn btn-sm btn-warning btnWali'>wali</button>
           <a class='btn btn-sm btn-danger' href='` + window.location.href + '/' + data.id + `/edit'>siswa</a>
-          <a class='btn btn-sm btn-primary' href='` + window.location.href + '/jadwal/' + data.id + `'>jadwal</a>
+          <button class="btn btn-sm btn-primary btnJadwal">jadwal</button>
           `
         }
 
@@ -134,14 +186,34 @@
     ]
   })
 
-  // Edit Data
-  $('#tabel tbody').on('click', '.btnEdit', function() {
+  // Edit Walikelas
+  $('#tabel tbody').on('click', '.btnWali', function() {
     var data = dataTable.row($(this).parents('tr')).data();
 
     $('#inputfkKelas').val(data.id);
     $('#inputfkGuru').val(data.wali);
 
     $('#modal-wali').modal('show');
+  });
+
+  // Upload jadwal
+  $('#tabel tbody').on('click', '.btnJadwal', function() {
+    var data = dataTable.row($(this).parents('tr')).data();
+
+    FilePond.setOptions({
+      server: {
+        process: {
+          url: '<?= base_url('admin/jadwal') ?>',
+          method: 'POST',
+          data: {
+            id: 'ada',
+            wali: 'ini'
+          }
+        }
+      }
+    })
+
+    $('#modal-jadwal').modal('show');
   });
 
   //Simpan Data Wali
