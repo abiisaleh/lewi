@@ -1,35 +1,32 @@
 # Base image
-FROM shinsenter/phpfpm-apache:php8.2-tidy
+FROM php:8.1-apache
 
 # Set Apache document root
-ENV APACHE_DOCUMENT_ROOT=/public
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 
-# Copy additional files
-# COPY scratch/ / # buildkit
-COPY . /var/www/html # buildkit
+# Enable Apache modules
+RUN a2enmod rewrite
 
-# Set image labels
-LABEL org.opencontainers.image.title="shinsenter/codeigniter4" \
-      org.opencontainers.image.description="🔰 (PHP) Run CodeIgniter" \
-      maintainer="SHIN (@shinsenter) <shin@shin.company>" \
-      org.opencontainers.image.created="2023-06-21T00:37:00+0000" \
-      org.opencontainers.image.documentation="https://hub.docker.com/r/shinsenter/codeigniter4" \
-      org.opencontainers.image.licenses="GPL-3.0" \
-      org.opencontainers.image.revision="dbf076b2ea8c8e1fc56ca60deb6aa8440d19ce8d" \
-      org.opencontainers.image.source="https://code.shin.company/php/blob/main/src/webapps/codeigniter4/Dockerfile" \
-      org.opencontainers.image.url="https://hub.docker.com/r/shinsenter/codeigniter4/tags"
+# Install required PHP extensions
+RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Set environment variables
-ENV IMAGE_NAME="shinsenter/codeigniter4"
+# Install PHP intl extension
+RUN apt-get update && apt-get install -y libicu-dev \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install intl
+
+# Copy application files
+COPY . /var/www/html
+
+# Set file permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 775 /var/www/html/writable
 
 # Set working directory
 WORKDIR /var/www/html
 
-# Expose ports
-EXPOSE 9000/tcp
-EXPOSE 80/tcp
-EXPOSE 443/tcp
-EXPOSE 443/udp
+# Expose port
+EXPOSE 80
 
 # Entry point
-ENTRYPOINT ["/init"]
+ENTRYPOINT ["apache2-foreground"]
