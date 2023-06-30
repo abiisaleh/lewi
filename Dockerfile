@@ -5,8 +5,8 @@ FROM shinsenter/phpfpm-apache:php8.2-tidy
 ENV APACHE_DOCUMENT_ROOT=/public
 
 # Copy additional files
-COPY scratch/ / # buildkit
-COPY root/ / # buildkit
+# COPY scratch/ / # buildkit
+COPY . /var/www/html # buildkit
 
 # Set image labels
 LABEL org.opencontainers.image.title="shinsenter/codeigniter4" \
