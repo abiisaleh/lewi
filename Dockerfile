@@ -12,8 +12,10 @@ RUN apt-get update \
     && apt-get install -y \
         libzip-dev \
         zip \
+        libicu-dev \
     && docker-php-ext-install zip \
-    && docker-php-ext-install pdo_mysql
+    && docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install intl
 
 # Enable Apache rewrite module
 RUN a2enmod rewrite
