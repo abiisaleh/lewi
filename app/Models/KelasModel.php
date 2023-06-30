@@ -44,7 +44,7 @@ class KelasModel extends Model
         return $this
             ->join('wali_kelas', 'kelas.id = wali_kelas.fkKelas', 'left')
             ->join('guru', 'wali_kelas.fkGuru = guru.nip', 'left')
-            ->select('kelas.*, guru.nama as wali');
+            ->select('kelas.*, guru.nama as wali, wali_kelas.jadwal');
     }
 
     public function countSiswa(array $data)

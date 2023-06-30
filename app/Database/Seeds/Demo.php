@@ -152,7 +152,9 @@ class Demo extends Seeder
 
         //tahun ajaran
         $data = [
-            'tahun' => 2022 / 2023
+            'tahun_awal' => 2022,
+            'tahun_akhir' => 2023,
+            'semester' => 'I'
         ];
         $this->db->table('TA')->insert($data);
 

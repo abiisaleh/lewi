@@ -46,26 +46,23 @@ class Jadwal extends ResourceController
      */
     public function create()
     {
-        $data = $this->request->getPost();
-        print_r($data);
-        dd($data);
+        $fkKelas = $this->request->getPost('fkKelas');
 
+        $TA = model('TaModel')->countAll();
         // Cek data id wali kelas.
-        $data['id'] = $this->model
-            ->where('fkKelas', $data['fkKelas'])
-            ->where('fkTA', $data['fkTA'])
+        $data = $this->model
+            ->where('fkKelas', $fkKelas)
+            ->where('fkTA', $TA)
             ->first();
 
-
-        $jadwal = $this->request->getFile();
+        $jadwal = $this->request->getFile('filepond');
         $jadwalName = $jadwal->getRandomName();
         $jadwal->move('uploads', $jadwalName);
 
-        $data = [
-            'id' => $this->request->getPost('id'),
-            'jadwal' => $jadwalName
-        ];
-
+        //simpan di tabel wali_kelas
+        $data['fkKelas'] = $fkKelas;
+        $data['fkTA'] = $TA;
+        $data['jadwal'] = $jadwalName;
         $this->model->save($data);
     }
 
@@ -96,6 +93,6 @@ class Jadwal extends ResourceController
      */
     public function delete($id = null)
     {
-        $this->model->delete($id);
+        //
     }
 }

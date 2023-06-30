@@ -16,6 +16,7 @@ class Home extends BaseController
 
     public function siswa()
     {
+        $this->request->getFile();
         $nis = $this->request->getVar('nis');
 
         $data['title'] = 'Data Siswa';

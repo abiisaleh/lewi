@@ -12,8 +12,8 @@ class WaliKelasModel extends Model
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
-    protected $protectFields    = false;
-    protected $allowedFields    = [];
+    protected $protectFields    = true;
+    protected $allowedFields    = ['fkGuru', 'fkKelas', 'jadwal', 'fkTA'];
 
     // Dates
     protected $useTimestamps = false;

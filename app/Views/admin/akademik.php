@@ -107,7 +107,7 @@
           <div class="mx-2">
             <form class="form form-horizontal row" id="form-jadwal">
               <!-- Basic file uploader -->
-              <input type="file" class="basic-filepond">
+              <input type="file" class="basic-filepond" name="filepond">
               <p class="card-text">Unggah jadwal pelajaran dengan format <code>.pdf</code></p>
             </form>
           </div>
@@ -171,6 +171,13 @@
         "data": "jumlah_siswa",
       },
       {
+        "title": "Jadwal",
+        "data": null,
+        "render": function(data) {
+          return '<a href="uploads/' + data.jadwal + '">' + data.jadwal + '</a>'
+        }
+      },
+      {
         "title": "Aksi",
         "width": "20%",
         "data": null,
@@ -205,13 +212,22 @@
         process: {
           url: '<?= base_url('admin/jadwal') ?>',
           method: 'POST',
-          data: {
-            id: 'ada',
-            wali: 'ini'
+          withCredentials: false,
+          headers: {},
+          timeout: 7000,
+          onload: null,
+          onerror: null,
+          ondata: function(formData) {
+            // Append additional data to the FormData object
+            formData.append('fkKelas', data.id);
+
+            // Return the modified FormData object
+            return formData;
           }
         }
       }
-    })
+    });
+
 
     $('#modal-jadwal').modal('show');
   });
