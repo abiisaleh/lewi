@@ -22097,7 +22097,7 @@ body .bi:before,
     padding: 1rem
 }
 
-.layout-horizontal .main-navbar ul {
+.layout-horizontal .main-navbar ul.menu {
     list-style: none;
     padding: 0;
     display: flex;

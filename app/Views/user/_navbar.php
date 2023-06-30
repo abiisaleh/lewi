@@ -1,6 +1,6 @@
 <nav class="main-navbar">
     <div class="container">
-        <ul class="mx-auto">
+        <ul class="mx-auto menu">
             <li class="menu-item active">
                 <a href="#home" class='menu-link'>
                     <i class="bi bi-grid-fill"></i>
@@ -67,8 +67,8 @@
                         <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="user-menu d-flex">
                                 <div class="user-name text-end me-3">
-                                    <h6 class="mb-0 text-gray-600"><?= (ucfirst(user()->username)) ?></h6>
-                                    <p class="mb-0 text-sm text-gray-600"><?= (in_groups('admin')) ? 'admin' : ((in_groups('guru')) ? 'guru' : 'siswa') ?></p>
+                                    <h6 class="mb-0 text-light"><?= (ucfirst(user()->username)) ?></h6>
+                                    <p class="mb-0 text-sm text-light"><?= (in_groups('admin')) ? 'admin' : ((in_groups('guru')) ? 'guru' : 'siswa') ?></p>
                                 </div>
                                 <div class="user-img d-flex align-items-center">
                                     <div class="avatar avatar-md">
