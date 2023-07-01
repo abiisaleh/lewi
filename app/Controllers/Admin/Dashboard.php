@@ -15,7 +15,22 @@ class Dashboard extends BaseController
 
         $data['kehadiran'] = model('AbsensiModel')->where('tgl', date('Y:m:d'))->selectCount('ket')->find();
 
-        // $data['pelanggaran'] = model('PelanggaranSiswaModel')->whereIn('tgl', date('Y'))->selectCount('tgl');
+        $pelanggaran = model('PelanggaranSiswaModel')->getGroupedMonths(date('Y'));
+        $result = array_fill(0, 12, 0); // Membuat array baru dengan 12 elemen yang diinisialisasi dengan nilai 0
+
+        foreach ($pelanggaran as $item) {
+            $bulan = $item->bulan;
+            $jumlah = $item->jumlah;
+
+            $result[$bulan - 1] = $jumlah;
+        }
+
+        // Mengonversi array ke dalam bentuk numerik
+        $result = array_map('intval', $result);
+        //konvert ke string
+        $resultString = '[' . implode(', ', $result) . ']';
+
+        $data['pelanggaran'] = $resultString;
 
         $data['title'] = 'Dashboard';
         return view('admin/dashboard', $data);

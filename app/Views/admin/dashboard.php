@@ -136,7 +136,7 @@
         plotOptions: {},
         series: [{
             name: 'pelanggaran',
-            data: [9, 20, 30, 20, 10, 20, 30, 20, 10, 20, 30, 20]
+            data: <?= $pelanggaran ?>
         }],
         colors: '#435ebe',
         xaxis: {

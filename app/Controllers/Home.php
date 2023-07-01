@@ -6,7 +6,7 @@ class Home extends BaseController
 {
     public function index()
     {
-        if (in_groups('admin', 'guru')) {
+        if (in_groups(['admin', 'guru'])) {
             return redirect()->to('admin');
         }
 

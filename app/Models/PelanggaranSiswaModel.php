@@ -55,4 +55,13 @@ class PelanggaranSiswaModel extends Model
             ->selectSum('skor')
             ->first();
     }
+
+    public function getGroupedMonths($tahun)
+    {
+        return $this->select("MONTH(`tgl`) AS bulan, COUNT(*) AS jumlah")
+            ->where("YEAR(`tgl`)", $tahun)
+            ->groupBy("MONTH(`tgl`)")
+            ->get()
+            ->getResult();
+    }
 }
