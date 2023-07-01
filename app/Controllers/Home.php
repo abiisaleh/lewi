@@ -21,6 +21,7 @@ class Home extends BaseController
         $data['title'] = 'Data Siswa';
         $data['siswa'] = model('SiswaModel')->find($nis);
         d($data);
+        d($nis);
         $data['kelas'] = model('SiswaKelasModel')->kelas($nis)->first();
         $data['skorPelanggaran'] = model('PelanggaranSiswaModel')->skor($nis);
         $data['pelanggaran'] = model('PelanggaranSiswaModel')->join('pelanggaran', 'pelanggaran.id = fkPelanggaran')->where('fkSiswa', $nis)->find();
