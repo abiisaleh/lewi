@@ -30,7 +30,7 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
-$routes->get('siswa', 'Home::siswa');
+$routes->post('siswa', 'Home::siswa');
 
 $routes->get('admin', 'Admin\Dashboard::index', ['filter' => 'role:admin,guru']);
 $routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'role:admin'], function ($routes) {

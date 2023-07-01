@@ -8,7 +8,7 @@
         <p class="pt-2 pb-5 px-2">
             SMK YPPK Jayapura memiliki sistem monitoring kesiswaan yang memungkinkan pemantauan dan pengelolaan kehadiran, kinerja akademik, dan disiplin siswa secara efisien.
         </p>
-        <form action="siswa" method="GET">
+        <form action="siswa" method="POST">
             <div class="d-flex">
                 <div class="col-lg-8 col-10 mx-auto">
                     <div class="input-group shadow-lg">
