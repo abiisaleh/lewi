@@ -2,8 +2,7 @@
 # Operating Specific Junk Files
 #-------------------------
 
-#FIle TA
-TA-*.docx
+public/uploads/*
 
 # OS X
 .DS_Store
