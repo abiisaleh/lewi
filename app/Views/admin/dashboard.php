@@ -144,9 +144,9 @@
         },
     }
     let optionsKehadiran = {
-        series: [70, 30, 20, 20],
-        labels: ['Hadir', 'Sakit', 'Izin', 'Alpa'],
-        colors: ['#435ebe', '#ffd145', '#55c6e8', '#ff7976'],
+        series: <?= $kehadiran ?>,
+        labels: ['Alpa', 'Hadir', 'Izin', 'Sakit'],
+        colors: ['#ff7976', '#435ebe', '#55c6e8', '#ffd145'],
         chart: {
             type: 'donut',
             width: '100%',

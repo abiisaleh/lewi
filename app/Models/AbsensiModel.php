@@ -56,4 +56,15 @@ class AbsensiModel extends Model
 
         return $pertemuan - $hadir;
     }
+
+    public function getKehadiran()
+    {
+        return $this
+            ->where('tgl', date('Y:m:d'))
+            ->select('ket')
+            ->selectCount('ket', 'jumlah')
+            ->groupBy('ket')
+            ->orderBy('ket', 'asc')
+            ->get()->getResult();
+    }
 }
