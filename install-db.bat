@@ -1,4 +1,3 @@
-php spark db:create lewi
 php spark migrate
 php spark auth:create_user admin admin@demo.com
 php spark auth:set_password admin 1234demo
