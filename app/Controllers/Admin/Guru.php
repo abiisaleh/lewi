@@ -57,7 +57,7 @@ class Guru extends ResourceController
      */
     public function create()
     {
-        $data = $this->request->getVar();
+        $data = $this->request->getPost();
         $guru = $this->model->find($data['nip']);
 
         //simpan data guru

@@ -61,8 +61,15 @@ class Siswa extends ResourceController
      */
     public function create()
     {
-        $data = $this->request->getVar();
-        $this->model->save($data);
+        $data = $this->request->getPost();
+        $guru = $this->model->find($data['nis']);
+
+        //simpan data guru
+        if (is_null($guru)) {
+            $this->model->insert($data);
+        } else {
+            $this->model->save($data);
+        }
 
         //buatkan data user
         $users = model(UserModel::class);
