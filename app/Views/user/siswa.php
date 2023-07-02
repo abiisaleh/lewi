@@ -2,7 +2,7 @@
 
 <?php $this->section('content'); ?>
 
-<div class="row mb-5">
+<section class="row mb-5">
     <?php if (is_null($siswa)) : ?>
         <div class="col">
             <div class="alert alert-danger" role="alert">
@@ -141,7 +141,7 @@
         </div>
 
     <?php endif ?>
-</div>
+</section>
 <?php $this->endsection(); ?>
 
 <?php $this->section('script'); ?>
