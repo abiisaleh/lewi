@@ -52,9 +52,7 @@
                     <h3><?= $title ?></h3>
                 </div>
                 <div class="page-content">
-                    <section class="row">
-                        <?php $this->renderSection('content'); ?>
-                    </section>
+                    <?php $this->renderSection('content'); ?>
                 </div>
 
             </div>

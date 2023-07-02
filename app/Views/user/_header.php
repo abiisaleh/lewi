@@ -6,7 +6,7 @@
             </div>
             <div class="header-top-right">
 
-                <div class="theme-toggle d-flex gap-2 align-items-center mt-2">
+                <div class="theme-toggle d-sm-flex d-none gap-2 align-items-center mt-2">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--system-uicons" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 21 21">
                         <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M10.5 14.5c2.219 0 4-1.763 4-3.982a4.003 4.003 0 0 0-4-4.018c-2.219 0-4 1.781-4 4c0 2.219 1.781 4 4 4zM4.136 4.136L5.55 5.55m9.9 9.9l1.414 1.414M1.5 10.5h2m14 0h2M4.135 16.863L5.55 15.45m9.899-9.9l1.414-1.415M10.5 19.5v-2m0-14v-2" opacity=".3"></path>
@@ -26,10 +26,54 @@
                     </svg>
                 </div>
 
-                <!-- Burger button responsive -->
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
+                <div class="ms-auto d-lg-none d-block">
+                    <?php if (logged_in()) : ?>
+                        <div class="dropdown">
+                            <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="user-menu d-flex">
+                                    <div class="user-name text-end me-3">
+                                        <h6 class="mb-0"><?= (ucfirst(user()->username)) ?></h6>
+                                        <p class="mb-0 text-sm"><?= (in_groups('admin')) ? 'admin' : ((in_groups('guru')) ? 'guru' : 'siswa') ?></p>
+                                    </div>
+                                    <div class="user-img d-flex align-items-center">
+                                        <div class="avatar avatar-md">
+                                            <img src="./assets/compiled/jpg/1.jpg" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" style="min-width: 11rem">
+                                <li>
+                                    <h6 class="dropdown-header">Hello, <?= user()->username ?>!</h6>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="user"><i class="icon-mid bi bi-person me-2"></i> My
+                                        Profile</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#"><i class="icon-mid bi bi-gear me-2"></i> Settings</a>
+                                </li>
+                                <?php if (in_groups('admin')) : ?>
+                                    <li>
+                                        <a class="dropdown-item" href="admin"><i class="icon-mid bi bi-speedometer me-2"></i> Dashboard</a>
+                                    </li>
+                                <?php endif; ?>
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="logout"><i class="icon-mid bi bi-box-arrow-left me-2"></i>
+                                        Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    <?php else : ?>
+                        <div>
+                            <a href="login" class="btn btn-primary">Masuk</a>
+                        </div>
+                    <?php endif; ?>
+                </div>
+
             </div>
         </div>
     </div>

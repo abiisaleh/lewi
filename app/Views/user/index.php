@@ -2,7 +2,7 @@
 
 <?php $this->section('content'); ?>
 <!-- HOME -->
-<div class="row mb-5" id="home">
+<section class="row mb-5" id="home">
     <div class="col-md-8 mx-auto text-center pt-3 pb-5">
         <h2>Sistem Informasi Monitoring pada SMA YPPK Taruna Dharma</h2>
         <p class="pt-2 pb-5 px-2">
@@ -19,11 +19,11 @@
             </div>
         </form>
     </div>
-</div>
+</section>
 <!-- END HOME -->
 
 <!-- PROFILE -->
-<div class="row mb-5" id="profile">
+<section class="row mb-5" id="profile">
     <div class="col py-3">
         <div class="card">
             <div class="card-content">
@@ -45,13 +45,13 @@
         </div>
         <!-- <h3 class="text-center">Profile</h3> -->
     </div>
-</div>
+</section>
 <!-- END PROFILE -->
 
 <!-- ABOUT -->
-<div class="row mb-5" id="about">
+<section class="row mb-5" id="about">
     <h3 class="text-center pb-3">Tentang</h3>
-    <div class="row">
+    <div class="row mx-auto">
         <div class="col-lg-4 col-12">
             <div class="card">
                 <div class="card-body px-4 py-4-5">
@@ -110,6 +110,7 @@
             </div>
         </div>
     </div>
-</div>
+</section>
+
 <!-- END ABOUT -->
 <?php $this->endsection(); ?>
