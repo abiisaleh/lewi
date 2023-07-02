@@ -6,7 +6,7 @@
     <div class="col-md-8 mx-auto text-center pt-3 pb-5">
         <h2>Sistem Informasi Monitoring pada SMA YPPK Taruna Dharma</h2>
         <p class="pt-2 pb-5 px-2">
-            SMK YPPK Jayapura memiliki sistem monitoring kesiswaan yang memungkinkan pemantauan dan pengelolaan kehadiran, kinerja akademik, dan disiplin siswa secara efisien.
+            SMA YPPK Taruna Dharma memiliki sistem monitoring kesiswaan yang memungkinkan pemantauan dan pengelolaan kehadiran, kinerja akademik, dan disiplin siswa secara efisien.
         </p>
         <form action="siswa" method="POST">
             <div class="d-flex">
