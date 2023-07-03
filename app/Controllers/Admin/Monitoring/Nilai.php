@@ -21,6 +21,7 @@ class Nilai extends ResourceController
         $this->SiswaModel = new SiswaModel();
         $this->MapelModel = new MapelModel();
         $this->SiswaKelasModel = new SiswaKelasModel();
+        helper('auth');
     }
 
     /**
@@ -30,7 +31,7 @@ class Nilai extends ResourceController
      */
     public function index()
     {
-        $data['kelas']['id'] = $this->request->getVar('kelas');
+        $data['kelas']['id'] = $this->request->getGet('kelas');
 
         if ($data['kelas']['id']) {
             session()->setFlashdata('kelas', $data['kelas']['id']);
@@ -69,7 +70,6 @@ class Nilai extends ResourceController
 
             return $this->response->setJSON($data);
         } else {
-            helper('auth');
             $data['title'] = 'Data Nilai Siswa';
             return view('admin/nilai', $data);
         }
@@ -82,8 +82,6 @@ class Nilai extends ResourceController
      */
     public function show($id = null)
     {
-        helper('auth');
-
         $siswa = $this->SiswaModel->kelas()->find($id);
 
         $data['title'] = 'Data Nilai Siswa';
