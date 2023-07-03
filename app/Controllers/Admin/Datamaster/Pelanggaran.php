@@ -95,7 +95,7 @@ class Pelanggaran extends ResourceController
 
     public function select2()
     {
-        $query = $this->request->getPost('q');
+        $query = $this->request->getGet('q');
 
         if ($query) {
             $array = $this->model->search($query)->findAll();
