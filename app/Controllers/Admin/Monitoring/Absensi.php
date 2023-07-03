@@ -8,7 +8,7 @@ class Absensi extends BaseController
 {
     public function index()
     {
-        $data['kelas']['id'] = $this->request->getVar('kelas');
+        $data['kelas']['id'] = $this->request->getGet('kelas');
 
         if ($data['kelas']['id']) {
             session()->setFlashdata('kelas', $data['kelas']['id']);
@@ -24,7 +24,6 @@ class Absensi extends BaseController
 
             return $this->response->setJSON($data);
         } else {
-            helper('auth');
             $data['title'] = 'Data Kehadiran Siswa';
             return view('admin/absensi', $data);
         }
@@ -32,7 +31,7 @@ class Absensi extends BaseController
 
     public function save()
     {
-        $data = $this->request->getVar();
+        $data = $this->request->getPost();
         $data['tgl'] = date('Y-m-d');
 
         //cek data absensi

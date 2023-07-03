@@ -24,7 +24,6 @@ class Guru extends ResourceController
 
             return $this->response->setJSON($data);
         } else {
-            helper('auth');
             $data['title'] = 'Data Guru';
             return view('admin/guru', $data);
         }
@@ -112,7 +111,7 @@ class Guru extends ResourceController
 
     public function select2()
     {
-        $query = $this->request->getVar('q');
+        $query = $this->request->getGet('q');
 
         if ($query) {
             $array = $this->model->search($query)->findAll();

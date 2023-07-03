@@ -13,6 +13,7 @@ class Pelanggaran extends ResourceController
     public function __construct()
     {
         $this->model = new PelanggaranModel();
+        helper('auth');
     }
     /**
      * Return an array of resource objects, themselves in array format
@@ -26,7 +27,6 @@ class Pelanggaran extends ResourceController
 
             return $this->response->setJSON($data);
         } else {
-            helper('auth');
             $data['title'] = 'Data Pelanggaran';
             return view('admin/data-pelanggaran', $data);
         }
@@ -59,7 +59,7 @@ class Pelanggaran extends ResourceController
      */
     public function create()
     {
-        $data = $this->request->getVar();
+        $data = $this->request->getPost();
         $this->model->save($data);
     }
 
@@ -95,7 +95,7 @@ class Pelanggaran extends ResourceController
 
     public function select2()
     {
-        $query = $this->request->getVar('q');
+        $query = $this->request->getPost('q');
 
         if ($query) {
             $array = $this->model->search($query)->findAll();

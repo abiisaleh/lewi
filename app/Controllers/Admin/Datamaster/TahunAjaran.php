@@ -52,7 +52,7 @@ class TahunAjaran extends ResourceController
      */
     public function create()
     {
-        $data = $this->request->getVar();
+        $data = $this->request->getPost();
         $this->model->save($data);
     }
 

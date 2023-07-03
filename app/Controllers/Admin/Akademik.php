@@ -22,6 +22,7 @@ class Akademik extends ResourceController
         $this->KelasModel = new KelasModel();
         $this->WaliKelasModel = new WaliKelasModel();
         $this->SiswaKelasModel = new SiswaKelasModel();
+        helper('auth');
     }
     /**
      * Return an array of resource objects, themselves in array format
@@ -30,14 +31,13 @@ class Akademik extends ResourceController
      */
     public function index()
     {
-        $kelas = $this->request->getVar('tingkat');
+        $kelas = $this->request->getGet('tingkat');
 
         if ($this->request->isAjax()) {
             $data['data'] = $this->KelasModel->wali()->findAll();
 
             return $this->response->setJSON($data);
         } else {
-            helper('auth');
             $data['title'] = 'Data Akademik';
             $data['subtitle'] = 'Semester I T.A. 2019/2020';
             return view('admin/akademik', $data);
@@ -82,8 +82,6 @@ class Akademik extends ResourceController
      */
     public function edit($id = null)
     {
-        helper('auth');
-
         $kelas = $this->KelasModel->find($id);
 
         $data['title'] = 'Data Akademik';

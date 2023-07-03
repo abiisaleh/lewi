@@ -4,7 +4,6 @@ namespace App\Controllers\Admin\Monitoring;
 
 use App\Controllers\BaseController;
 use App\Models\PelanggaranSiswaModel;
-use App\Models\SiswaModel;
 
 class Pelanggaran extends BaseController
 {
@@ -21,7 +20,6 @@ class Pelanggaran extends BaseController
             $data['data'] = $this->PelanggaranSiswaModel->siswa()->find();
             return $this->response->setJSON($data);
         } else {
-            helper('auth');
             $data['title'] = 'Data Pelanggaran Siswa';
             return view('admin/pelanggaran', $data);
         }

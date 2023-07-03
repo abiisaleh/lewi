@@ -26,7 +26,6 @@ class Kelas extends ResourceController
 
             return $this->response->setJSON($data);
         } else {
-            helper('auth');
             $data['title'] = 'Data Kelas';
             return view('admin/data-kelas', $data);
         }
@@ -59,7 +58,7 @@ class Kelas extends ResourceController
      */
     public function create()
     {
-        $data = $this->request->getVar();
+        $data = $this->request->getPost();
         $this->model->save($data);
     }
 
@@ -95,7 +94,7 @@ class Kelas extends ResourceController
 
     public function select2()
     {
-        $query = $this->request->getVar('q');
+        $query = $this->request->getGet('q');
 
         if ($query) {
             $array = $this->model->search($query)->findAll();

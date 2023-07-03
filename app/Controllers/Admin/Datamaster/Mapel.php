@@ -12,7 +12,7 @@ class Mapel extends ResourceController
 
     public function __construct()
     {
-        $this->model = new MapelModel();   
+        $this->model = new MapelModel();
     }
     /**
      * Return an array of resource objects, themselves in array format
@@ -25,11 +25,9 @@ class Mapel extends ResourceController
             $data['data'] = $this->model->findAll();
 
             return $this->response->setJSON($data);
-
         } else {
-            helper('auth');
             $data['title'] = 'Data Mata Pelajaran';
-            return view('admin/data-mapel',$data);
+            return view('admin/data-mapel', $data);
         }
     }
 
@@ -60,7 +58,7 @@ class Mapel extends ResourceController
      */
     public function create()
     {
-        $data = $this->request->getVar();
+        $data = $this->request->getPost();
         $this->model->save($data);
     }
 

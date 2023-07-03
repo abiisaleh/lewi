@@ -28,7 +28,6 @@ class Siswa extends ResourceController
 
             return $this->response->setJSON($data);
         } else {
-            helper('auth');
             $data['title'] = 'Data Siswa';
             return view('admin/siswa', $data);
         }
@@ -116,7 +115,7 @@ class Siswa extends ResourceController
 
     public function select2()
     {
-        $query = $this->request->getVar('q');
+        $query = $this->request->getGet('q');
 
         if ($query) {
             $array = $this->model->search($query)->findAll();

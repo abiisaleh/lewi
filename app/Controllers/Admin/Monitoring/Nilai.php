@@ -134,7 +134,7 @@ class Nilai extends ResourceController
      */
     public function update($id = null)
     {
-        $data = $this->request->getVar();
+        $data = $this->request->getPost();
 
         //ambil key dari data yang dikirim
         $keys = array_keys($data);
