@@ -89,10 +89,10 @@ class Rekomendasi extends BaseController
                 ->select('penghasilan_ortu,tanggungan_ortu,jarak_rumah,kondisi_rumah')
                 ->find($Siswa['nis']);
 
-            $Siswa['penghasilan_ortu'] = $result['penghasilan_ortu'];
-            $Siswa['tanggungan_ortu']  = $result['tanggungan_ortu'];
-            $Siswa['jarak_rumah']      = $result['jarak_rumah'];
-            $Siswa['kondisi_rumah']    = $result['kondisi_rumah'];
+            $Siswa['penghasilan_ortu'] = round(100 * $result['penghasilan_ortu'] / 3, 2);
+            $Siswa['tanggungan_ortu']  = round(100 * $result['tanggungan_ortu'] / 3, 2);
+            $Siswa['jarak_rumah']      = round(100 * $result['jarak_rumah'] / 3, 2);
+            $Siswa['kondisi_rumah']    = round(100 * $result['kondisi_rumah'] / 2, 2);
 
             //hitung nilai x bobot kriteria 
             $Siswa['hasil'] = 0;
@@ -101,7 +101,7 @@ class Rekomendasi extends BaseController
                 //hitung masing-masing kriteria
                 $Siswa['hasil_' . $Kriteria['nama']] = $Siswa[$Kriteria['nama']] * $Kriteria['bobot'];
                 //jumlahkn tiap hasil dan hitung hasil akhir
-                $Siswa['hasil'] += $Siswa['hasil_' . $Kriteria['nama']];
+                $Siswa['hasil'] += round($Siswa['hasil_' . $Kriteria['nama']], 2);
             }
         }
 
@@ -179,7 +179,7 @@ class Rekomendasi extends BaseController
 
             foreach ($kriteria as $Kriteria) {
                 //hitung masing-masing kriteria
-                $Siswa['hasil_' . $Kriteria['nama']] = $Siswa[$Kriteria['nama']] * $Kriteria['bobot'];
+                $Siswa['hasil_' . $Kriteria['nama']] = round($Siswa[$Kriteria['nama']] * $Kriteria['bobot'], 2);
                 //jumlahkn tiap hasil dan hitung hasil akhir
                 $Siswa['hasil'] += $Siswa['hasil_' . $Kriteria['nama']];
             }

@@ -48,9 +48,9 @@
                     <fieldset class="form-group">
                       <select class="form-select" id="inputpenghasilan" name="penghasilan_ortu">
                         <option>-</option>
-                        <option value="1">&lt; 3,5 Juta</option>
+                        <option value="3">&lt; 3,5 Juta</option>
                         <option value="2">3,5 Juta - 5 Juta</option>
-                        <option value="3">&gt; 5 Juta</option>
+                        <option value="1">&gt; 5 Juta</option>
                       </select>
                     </fieldset>
                   </div>

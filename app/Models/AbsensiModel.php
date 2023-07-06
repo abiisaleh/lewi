@@ -49,12 +49,14 @@ class AbsensiModel extends Model
         $pertemuan = $absensi
             ->countAllResults();
 
-        $hadir = $absensi
+        $hadir = $this
+            ->join('kelas_siswa_ta', 'kelas_siswa_ta.id = fkKelasSiswaTa')
+            ->where('absensi.fkSiswa', $nis)
+            ->where('fkTA', $TA)
             ->where('ket', 'hadir')
             ->countAllResults();
 
-
-        return $pertemuan - $hadir;
+        return $hadir / $pertemuan * 100;
     }
 
     public function getKehadiran()

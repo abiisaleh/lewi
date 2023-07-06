@@ -28,6 +28,7 @@
             <th>C3</th>
             <th>C4</th>
             <th>C5</th>
+            <th>C6</th>
         </tr>
     </thead>
     <tbody>
@@ -35,6 +36,7 @@
             <tr>
                 <td scope="row"><?= $Siswa['nama'] ?></td>
                 <td><?= $Siswa['Nilai Semester'] ?? 0 ?></td>
+                <td><?= $Siswa['Peringkat'] ?></td>
                 <td><?= $Siswa['penghasilan_ortu'] ?></td>
                 <td><?= $Siswa['tanggungan_ortu'] ?></td>
                 <td><?= $Siswa['jarak_rumah'] ?></td>
@@ -53,6 +55,7 @@
             <th>C3 x W3</th>
             <th>C4 x W4</th>
             <th>C5 x W5</th>
+            <th>C6 x W6</th>
             <th>Total</th>
         </tr>
     </thead>
@@ -61,6 +64,7 @@
             <tr>
                 <td scope="row"><?= $Siswa['nama'] ?></td>
                 <td><?= $Siswa['hasil_Nilai Semester'] ?></td>
+                <td><?= $Siswa['hasil_Peringkat'] ?></td>
                 <td><?= $Siswa['hasil_penghasilan_ortu'] ?></td>
                 <td><?= $Siswa['hasil_tanggungan_ortu'] ?></td>
                 <td><?= $Siswa['hasil_jarak_rumah'] ?></td>
