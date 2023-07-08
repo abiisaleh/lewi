@@ -107,6 +107,8 @@
                         </div>
                     </div>
                 </div> -->
+                <div class="col-12" id="rekomendasi"></div>
+
 
                 <div class="col-12">
                     <div class="card">
@@ -182,5 +184,25 @@
 
     var chartNilai = new ApexCharts(document.querySelector("#chart-nilai"), nilai);
     chartNilai.render();
+
+    //rekomendasi prestasi
+    $.ajax({
+        type: 'POST',
+        url: '<?= base_url('api/rekomendasi/prestasi') ?>', // Ganti dengan URL tujuan pengiriman form
+        data: {
+            tingkat: '<?= $kelas['tingkat'] ?>',
+            jurusan: '<?= $kelas['jurusan'] ?>'
+        },
+        success: function(response) {
+            $('#rekomendasi').append(response.result)
+            $('.modal-body').append(response.perhitungan)
+            $('#result-title').text('Siswa Berprestasi')
+        },
+        error: function(xhr, status, error) {
+            // Menghandle respon error dari server
+            console.log(xhr.responseText);
+            alert('Terjadi kesalahan: ' + xhr.statusText);
+        }
+    });
 </script>
 <?php $this->endsection(); ?>

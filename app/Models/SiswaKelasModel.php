@@ -51,8 +51,8 @@ class SiswaKelasModel extends Model
         return $this
             ->join('kelas', 'kelas_siswa_ta.fkKelas = kelas.id')
             ->join('TA', 'kelas_siswa_ta.fkTA = TA.id')
-            ->join('wali_kelas', 'kelas_siswa_ta.fkKelas = kelas.id')
-            ->join('guru', 'fkGuru = nip')
+            ->join('wali_kelas', 'kelas_siswa_ta.fkKelas = kelas.id', 'left')
+            ->join('guru', 'fkGuru = nip', 'left')
             ->where('kelas_siswa_ta.fkTA', $TA)
             ->where('fkSiswa', $nis)
             ->select('kelas.*, TA.*, kelas_siswa_ta.id, guru.nama as wali_kelas');

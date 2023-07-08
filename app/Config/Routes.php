@@ -70,6 +70,8 @@ $routes->group('api', function ($routes) {
     $routes->get('select2/pelanggaran', 'Admin\Datamaster\Pelanggaran::select2');
     $routes->get('select2/guru', 'Admin\Guru::select2');
     $routes->get('select2/kelas', 'Admin\Datamaster\Kelas::select2');
+
+    $routes->post('rekomendasi/prestasi', 'Admin\Rekomendasi::prestasi_get');
 });
 
 
