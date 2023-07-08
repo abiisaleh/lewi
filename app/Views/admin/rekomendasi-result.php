@@ -2,7 +2,7 @@
     <div class="card-header pb-1">
         <div class="row">
             <div class="col py-1">
-                <h4 id="result-title">Hasil</h4>
+                <h4 class="result-title">Hasil</h4>
             </div>
             <div class="col-auto">
                 <!-- Button trigger for basic modal -->

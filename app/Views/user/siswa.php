@@ -107,8 +107,6 @@
                         </div>
                     </div>
                 </div> -->
-                <div class="col-12" id="rekomendasi"></div>
-
 
                 <div class="col-12">
                     <div class="card">
@@ -138,6 +136,9 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-12" id="rekomendasi-prestasi"></div>
+                <div class="col-12" id="rekomendasi-beasiswa"></div>
 
             </div>
         </div>
@@ -194,9 +195,29 @@
             jurusan: '<?= $kelas['jurusan'] ?>'
         },
         success: function(response) {
-            $('#rekomendasi').append(response.result)
+            $('#rekomendasi-prestasi').append(response.result)
             $('.modal-body').append(response.perhitungan)
-            $('#result-title').text('Siswa Berprestasi')
+            $('#rekomendasi-prestasi .result-title').text('Siswa Berprestasi')
+        },
+        error: function(xhr, status, error) {
+            // Menghandle respon error dari server
+            console.log(xhr.responseText);
+            alert('Terjadi kesalahan: ' + xhr.statusText);
+        }
+    });
+
+    //rekomendasi prestasi
+    $.ajax({
+        type: 'POST',
+        url: '<?= base_url('api/rekomendasi/beasiswa') ?>', // Ganti dengan URL tujuan pengiriman form
+        data: {
+            tingkat: '<?= $kelas['tingkat'] ?>',
+            jurusan: '<?= $kelas['jurusan'] ?>'
+        },
+        success: function(response) {
+            $('#rekomendasi-beasiswa').append(response.result)
+            $('.modal-body').append(response.perhitungan)
+            $('#rekomendasi-beasiswa .result-title').text('Siswa Beasiswa')
         },
         error: function(xhr, status, error) {
             // Menghandle respon error dari server

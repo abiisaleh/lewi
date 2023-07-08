@@ -72,6 +72,7 @@ $routes->group('api', function ($routes) {
     $routes->get('select2/kelas', 'Admin\Datamaster\Kelas::select2');
 
     $routes->post('rekomendasi/prestasi', 'Admin\Rekomendasi::prestasi_get');
+    $routes->post('rekomendasi/beasiswa', 'Admin\Rekomendasi::beasiswa_get');
 });
 
 
