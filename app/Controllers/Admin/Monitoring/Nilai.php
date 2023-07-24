@@ -6,6 +6,7 @@ use App\Models\MapelModel;
 use App\Models\NilaiModel;
 use App\Models\SiswaKelasModel;
 use App\Models\SiswaModel;
+use App\Models\WaliKelasModel;
 use CodeIgniter\RESTful\ResourceController;
 
 class Nilai extends ResourceController
@@ -14,6 +15,7 @@ class Nilai extends ResourceController
     protected $SiswaModel;
     protected $MapelModel;
     protected $SiswaKelasModel;
+    protected $WaliKelasModel;
 
     public function __construct()
     {
@@ -21,6 +23,7 @@ class Nilai extends ResourceController
         $this->SiswaModel = new SiswaModel();
         $this->MapelModel = new MapelModel();
         $this->SiswaKelasModel = new SiswaKelasModel();
+        $this->WaliKelasModel = new WaliKelasModel();
         helper('auth');
     }
 
@@ -31,17 +34,19 @@ class Nilai extends ResourceController
      */
     public function index()
     {
-        $data['kelas']['id'] = $this->request->getGet('kelas');
+        $data['kelas']['id'] = $this->WaliKelasModel->kelas(user()->username);
 
         if ($data['kelas']['id']) {
-            session()->setFlashdata('kelas', $data['kelas']['id']);
             $kelas = model('KelasModel')->find($data['kelas']['id']);
 
             $data['subtitle'] = 'Kelas ' . $kelas['tingkat'] . ' ' . $kelas['jurusan'] . ' ' . $kelas['kode'];
         }
         if ($this->request->isAjax()) {
-            $data['session'] = session()->getFlashdata('kelas');
-            $data['data'] = $this->SiswaModel->nilai(session()->get('kelas'))->find();
+            //ambil data kelas berdasarkan wali kelas yang login
+            $kelas = $this->WaliKelasModel->kelas(user()->username);
+
+            // $data['session'] = session()->getFlashdata('kelas');
+            $data['data'] = $this->SiswaModel->nilai($kelas)->find();
 
             //cek peringkat
             if (!is_null($data['data'])) {
@@ -55,7 +60,7 @@ class Nilai extends ResourceController
                     $Siswa['peringkat'] = $peringkat;
 
                     $idKelasSiswa = $this->SiswaKelasModel
-                        ->where('fkKelas', session()->get('kelas'))
+                        ->where('fkKelas', $kelas)
                         ->where('fkSiswa', $Siswa['nis'])
                         ->where('fkTA', $TA)
                         ->first()['id'];
@@ -140,7 +145,7 @@ class Nilai extends ResourceController
         $keys = array_keys($data);
 
         //variabel yang bukan mapel
-        $notMapel = ['csrf_test_name', '_method', 'fkKelas', 'fkSiswa'];
+        $notMapel = ['csrf_test_name', '_method', 'fkKelasSiswaTa', 'fkSiswa'];
 
         //lakukan perulangan untuk tiap mapel
         foreach ($keys as $mapel) {
@@ -148,7 +153,7 @@ class Nilai extends ResourceController
                 //cek siswa
                 $nilai = $this->NilaiModel
                     ->where('fkSiswa', $data['fkSiswa'])
-                    ->where('fkKelas', $data['fkKelas'])
+                    ->where('fkKelasSiswaTa', $data['fkKelasSiswaTa'])
                     ->where('fkMapel', $mapel)
                     ->first();
 
@@ -157,7 +162,7 @@ class Nilai extends ResourceController
                 }
 
                 $value['fkSiswa'] = $data['fkSiswa'];
-                $value['fkKelas'] = $data['fkKelas'];
+                $value['fkKelasSiswaTa'] = $data['fkKelasSiswaTa'];
                 $value['fkMapel'] = $mapel;
                 $value['nilai'] = $data[$mapel];
 

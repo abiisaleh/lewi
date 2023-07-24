@@ -38,4 +38,16 @@ class WaliKelasModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function kelas($nip)
+    {
+        $TA = $this->db->table('TA')->countAllResults();
+
+        $walikelas = $this
+            ->where('fkGuru', $nip)
+            ->where('fkTA', $TA)
+            ->first()['fkKelas'] ?? null;
+
+        return $walikelas;
+    }
 }

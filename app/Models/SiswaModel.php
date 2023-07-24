@@ -53,7 +53,7 @@ class SiswaModel extends Model
             ->join('kelas_siswa_ta', 'fkSiswa = nis')
             ->join('kelas', 'fkKelas = kelas.id')
             ->where('fkTA', $TA)
-            ->select('siswa.*, jurusan, kelas.id as id_kelas');
+            ->select('siswa.*, jurusan, kelas_siswa_ta.id as id_kelas');
     }
 
     function nilai($idKelas)

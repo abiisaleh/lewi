@@ -3,22 +3,29 @@
 namespace App\Controllers\Admin\Monitoring;
 
 use App\Controllers\BaseController;
+use App\Models\WaliKelasModel;
 
 class Absensi extends BaseController
 {
+    protected $WaliKelasModel;
+
+    public function __construct()
+    {
+        $this->WaliKelasModel = new WaliKelasModel();
+    }
+
     public function index()
     {
-        $data['kelas']['id'] = $this->request->getGet('kelas');
+        $data['kelas']['id'] = $this->WaliKelasModel->kelas(user()->username);
 
         if ($data['kelas']['id']) {
-            session()->setFlashdata('kelas', $data['kelas']['id']);
             $kelas = model('KelasModel')->find($data['kelas']['id']);
 
             $data['subtitle'] = 'Kelas ' . $kelas['tingkat'] . ' ' . $kelas['jurusan'] . ' ' . $kelas['kode'];
         }
         if ($this->request->isAjax()) {
-            $data['session'] = session()->getFlashdata('kelas');
-            $idkelas = session()->get('kelas');
+            // $data['session'] = session()->getFlashdata('kelas');
+            $idkelas = $this->WaliKelasModel->kelas(user()->username);
             $idTA = model('TaModel')->countAll();
             $data['data'] = model('SiswaModel')->absensi($idkelas, $idTA)->find();
 

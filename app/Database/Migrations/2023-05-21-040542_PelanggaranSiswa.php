@@ -20,7 +20,11 @@ class PelanggaranSiswa extends Migration
             ],
             'tgl' => [
                 'type' => 'DATETIME'
-            ]
+            ],
+            'fkKelasSiswaTa' => [
+                'type' => 'INT',
+                'constraint' => 3
+            ],
         ]);
         $this->forge->addPrimaryKey('id');
         $this->forge->createTable('pelanggaran_siswa');

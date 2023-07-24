@@ -11,7 +11,7 @@
                 <form class="form form-horizontal row" method="post" id="form-add">
                     <?= csrf_field(); ?>
                     <input type="hidden" name="_method" value="PUT">
-                    <input type="hidden" name="fkKelas" value="<?= $siswa['id_kelas'] ?>">
+                    <input type="hidden" name="fkKelasSiswaTa" value="<?= $siswa['id_kelas'] ?>">
                     <input type="hidden" name="fkSiswa" value="<?= $siswa['nis'] ?>">
                     <div class="form-body">
                         <div class="row">
