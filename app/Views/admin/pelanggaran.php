@@ -108,6 +108,7 @@
             data: {
                 fkSiswa: $('#inputfkSiswa').val(),
                 fkPelanggaran: $('#inputfkPelanggaran').val(),
+
             },
             success: function(data) {
                 dataTable.ajax.reload()

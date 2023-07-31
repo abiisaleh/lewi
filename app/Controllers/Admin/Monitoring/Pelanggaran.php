@@ -17,7 +17,12 @@ class Pelanggaran extends BaseController
     public function index()
     {
         if ($this->request->isAjax()) {
-            $data['data'] = $this->PelanggaranSiswaModel->siswa()->find();
+            // $data['data'] = $this->PelanggaranSiswaModel->siswa()->find();
+
+            //tiap wali hanya bisa lihat data muridnya
+            $data['data'] = $this->PelanggaranSiswaModel->siswa()->wali(user()->username)->find();
+
+
             return $this->response->setJSON($data);
         } else {
             $data['title'] = 'Data Pelanggaran Siswa';
@@ -29,6 +34,9 @@ class Pelanggaran extends BaseController
     {
         $data = $this->request->getPost();
         $data['tgl'] = date('Y-m-d H:i:s');
+
+        //ambil data kelas siswa ta
+        $data['fkKelasSiswaTa'] =  model('SiswaKelasModel')->Kelas($data['fkSiswa'])->find()[0]['id'];
 
         $this->PelanggaranSiswaModel->save($data);
 

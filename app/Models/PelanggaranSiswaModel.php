@@ -47,6 +47,17 @@ class PelanggaranSiswaModel extends Model
             ->select('siswa.*, pelanggaran.nama as pelanggaran, skor, tgl');
     }
 
+    public function wali($nip)
+    {
+        $TA = $this->db->table('TA')->countAllResults();
+        $kelas = $this->db->table('wali_kelas')->where('fkGuru', $nip)->where('fkTA', $TA)->get()->getResultArray()[0]['fkKelas'];
+
+        return $this
+            ->join('kelas_siswa_ta', 'fkKelasSiswaTa = kelas_siswa_ta.id')
+            ->where('fkKelas', $kelas)
+            ->where('fkTA', $TA);
+    }
+
     public function skor($nis)
     {
         return $this
