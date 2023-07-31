@@ -107,7 +107,7 @@ class Akademik extends ResourceController
      */
     public function delete($id = null)
     {
-        $this->model->delete($id);
+        $this->SiswaKelasModel->delete($id);
     }
 
     public function walikelas()

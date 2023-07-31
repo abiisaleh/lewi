@@ -85,5 +85,21 @@
       }
     })
   })
+
+  //hapus siswa di kelas
+  $('#tabel tbody').on('click', '.btnDelete', function() {
+    var data = dataTable.row($(this).parents('tr')).data()
+    var id = data.id
+
+    if (confirm('Anda yakin ingin mengeluarkan siswa ini?')) {
+      $.ajax({
+        url: '<?= base_url('admin/akademik-siswa/delete/') ?>' + id,
+        type: 'DELETE',
+        success: function() {
+          dataTable.ajax.reload()
+        }
+      })
+    }
+  })
 </script>
 <?php $this->endsection('script'); ?>

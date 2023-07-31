@@ -99,7 +99,7 @@
   //Hapus Data
   $('#tabel tbody').on('click', '.btnHapus', function() {
     var data = dataTable.row($(this).parents('tr')).data()
-    var id = data.nis
+    var id = data.id
 
     if (confirm('Anda yakin ingin menghapus data ini?')) {
       $.ajax({

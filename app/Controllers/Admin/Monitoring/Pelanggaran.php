@@ -57,7 +57,7 @@ class Pelanggaran extends BaseController
                 CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS => 'id=' . $telp . '&message=Kami dari SMK YPPK Jayapura ingin menginformasikan bahwa anak ibu yang bernama ' . $siswa['nama'] . ' melakukan pelanggaran yaitu ' . $pelanggaran,
+                CURLOPT_POSTFIELDS => 'id=' . $telp . '&message=Kami dari SMA YPPK Jayapura ingin menginformasikan bahwa anak ibu yang bernama ' . $siswa['nama'] . ' melakukan pelanggaran yaitu ' . $pelanggaran,
             ));
 
             curl_exec($curl);
