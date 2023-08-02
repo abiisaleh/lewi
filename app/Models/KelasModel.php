@@ -39,11 +39,12 @@ class KelasModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function wali()
+    public function wali($ta)
     {
         return $this
             ->join('wali_kelas', 'kelas.id = wali_kelas.fkKelas', 'left')
             ->join('guru', 'wali_kelas.fkGuru = guru.nip', 'left')
+            // ->where('fkTA', $ta)
             ->select('kelas.*, guru.nama as wali, wali_kelas.jadwal');
     }
 

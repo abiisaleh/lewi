@@ -18,7 +18,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form class="form form-horizontal row" enctype="multipart/form-data" id="form-add">
+        <form class="form form-horizontal row" method="post" enctype="multipart/form-data" id="form-add">
           <?= csrf_field(); ?>
           <input type="text" id="inputid" name="id" hidden>
           <div class="form-body">

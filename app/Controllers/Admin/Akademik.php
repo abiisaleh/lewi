@@ -32,14 +32,16 @@ class Akademik extends ResourceController
     public function index()
     {
         $kelas = $this->request->getGet('tingkat');
-
+        $ta = $this->TAmodel->countAllResults();
         if ($this->request->isAjax()) {
-            $data['data'] = $this->KelasModel->wali()->findAll();
+            $data['data'] = $this->KelasModel->wali($ta)->findAll();
 
             return $this->response->setJSON($data);
         } else {
             $data['title'] = 'Data Akademik';
-            $data['subtitle'] = 'Semester I T.A. 2019/2020';
+            $tahun = $this->TAmodel->find($ta);
+
+            $data['subtitle'] = 'Semester ' . $tahun['semester'] . ' T.A. ' . $tahun['tahun_awal'] . '/' . $tahun['tahun_akhir'];
             return view('admin/akademik', $data);
         }
     }
@@ -72,7 +74,9 @@ class Akademik extends ResourceController
      */
     public function create()
     {
-        //
+        $data = $this->request->getPost();
+        $this->TAmodel->insert($data);
+        return redirect()->back();
     }
 
     /**
