@@ -16,6 +16,12 @@ class Pelanggaran extends BaseController
 
     public function index()
     {
+        $lastTA = model('TaModel')->countAllResults();
+        $ta = model('TaModel')->find($lastTA);
+
+        $data['kelas']['id'] = model('WaliKelasModel')->kelas(user()->username);
+        $kelas = model('KelasModel')->find($data['kelas']['id']);
+
         if ($this->request->isAjax()) {
             // $data['data'] = $this->PelanggaranSiswaModel->siswa()->find();
 
@@ -26,6 +32,8 @@ class Pelanggaran extends BaseController
             return $this->response->setJSON($data);
         } else {
             $data['title'] = 'Data Pelanggaran Siswa';
+            $data['subtitle'] = 'Semester ' . $ta['semester'] . ' Tahun Ajaran ' . $ta['tahun_awal'] . '/' . $ta['tahun_akhir'] . ' <br> Kelas ' . $kelas['tingkat'] . ' ' . $kelas['jurusan'] . ' ' . $kelas['kode'];
+
             return view('admin/pelanggaran', $data);
         }
     }

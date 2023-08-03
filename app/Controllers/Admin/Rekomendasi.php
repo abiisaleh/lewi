@@ -28,6 +28,10 @@ class Rekomendasi extends BaseController
 
     public function beasiswa()
     {
+        $lastTA = model('TaModel')->countAllResults();
+        $ta = model('TaModel')->find($lastTA);
+        $data['subtitle'] = 'Semester ' . $ta['semester'] . ' Tahun Ajaran ' . $ta['tahun_awal'] . '/' . $ta['tahun_akhir'];
+
         $data['title'] = 'Rekomendasi Beasiswa';
 
         return view('admin/rekomendasi-beasiswa', $data);
@@ -116,7 +120,11 @@ class Rekomendasi extends BaseController
 
     public function prestasi()
     {
+        $lastTA = model('TaModel')->countAllResults();
+        $ta = model('TaModel')->find($lastTA);
+
         $data['title'] = 'Rekomendasi Prestasi';
+        $data['subtitle'] = 'Semester ' . $ta['semester'] . ' Tahun Ajaran ' . $ta['tahun_awal'] . '/' . $ta['tahun_akhir'];
         return view('admin/rekomendasi-prestasi', $data);
     }
 

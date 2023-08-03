@@ -36,10 +36,14 @@ class Nilai extends ResourceController
     {
         $data['kelas']['id'] = $this->WaliKelasModel->kelas(user()->username);
 
+        $lastTA = model('TaModel')->countAllResults();
+        $ta = model('TaModel')->find($lastTA);
+
+
         if ($data['kelas']['id']) {
             $kelas = model('KelasModel')->find($data['kelas']['id']);
 
-            $data['subtitle'] = 'Kelas ' . $kelas['tingkat'] . ' ' . $kelas['jurusan'] . ' ' . $kelas['kode'];
+            $data['subtitle'] = 'Semester ' . $ta['semester'] . ' Tahun Ajaran ' . $ta['tahun_awal'] . '/' . $ta['tahun_akhir'] . ' <br> Kelas ' . $kelas['tingkat'] . ' ' . $kelas['jurusan'] . ' ' . $kelas['kode'];
         }
         if ($this->request->isAjax()) {
             //ambil data kelas berdasarkan wali kelas yang login
