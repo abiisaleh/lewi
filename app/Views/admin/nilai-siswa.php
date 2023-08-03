@@ -19,7 +19,7 @@
                             <?php $NilaiModel = model('NilaiModel') ?>
 
                             <?php foreach ($mapel as $Mapel) : ?>
-                                <?php $nilai = $NilaiModel->where('fkSiswa', $siswa['nis'])->where('fkKelas', $siswa['id_kelas'])->where('fkMapel', $Mapel['id'])->first(); ?>
+                                <?php $nilai = $NilaiModel->where('fkSiswa', $siswa['nis'])->where('fkKelasSiswaTa', $siswa['id_kelas'])->where('fkMapel', $Mapel['id'])->first(); ?>
                                 <div class="row">
                                     <div class="col-md-8">
                                         <label for="input<?= $Mapel['id'] ?>"><?= $Mapel['pelajaran'] ?></label>
