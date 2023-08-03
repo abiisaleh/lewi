@@ -44,7 +44,7 @@ class PelanggaranSiswaModel extends Model
         return $this
             ->join('pelanggaran', 'fkPelanggaran = pelanggaran.id', 'left')
             ->join('siswa', 'fkSiswa = nis')
-            ->select('siswa.*, pelanggaran.nama as pelanggaran, skor, tgl');
+            ->select('siswa.*, pelanggaran_siswa.id as idPelanggaran, pelanggaran.nama as pelanggaran, skor, tgl');
     }
 
     public function wali($nip)

@@ -67,4 +67,9 @@ class Pelanggaran extends BaseController
             $this->response->setBody('gagal mengirim pesan');
         }
     }
+
+    public function delete($id)
+    {
+        $this->PelanggaranSiswaModel->delete($id);
+    }
 }

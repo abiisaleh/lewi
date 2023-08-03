@@ -99,7 +99,7 @@
         ]
     })
 
-    //Tambah siswa ke kelas
+    //Tambah pelanggaran siswa
     $('#form-siswa').submit(function(e) {
         e.preventDefault()
         $.ajax({
@@ -108,12 +108,27 @@
             data: {
                 fkSiswa: $('#inputfkSiswa').val(),
                 fkPelanggaran: $('#inputfkPelanggaran').val(),
-
             },
             success: function(data) {
                 dataTable.ajax.reload()
             }
         })
+    })
+
+    //Hapus Data
+    $('#tabel tbody').on('click', '.btnDelete', function() {
+        var data = dataTable.row($(this).parents('tr')).data()
+        var id = data.idPelanggaran
+
+        if (confirm('Anda yakin ingin menghapus data ini?')) {
+            $.ajax({
+                url: window.location.href + '/' + id,
+                type: 'DELETE',
+                success: function() {
+                    dataTable.ajax.reload()
+                }
+            })
+        }
     })
 </script>
 <?php $this->endsection('script'); ?>

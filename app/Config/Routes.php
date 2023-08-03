@@ -55,6 +55,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'ro
 
         $routes->get('pelanggaran', 'Pelanggaran::index');
         $routes->post('pelanggaran', 'Pelanggaran::save');
+        $routes->delete('pelanggaran/(:num)', 'Pelanggaran::delete/$1');
 
         $routes->get('absensi', 'Absensi::index');
         $routes->post('absensi', 'Absensi::save');
