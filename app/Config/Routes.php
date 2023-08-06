@@ -59,6 +59,8 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'ro
 
         $routes->get('absensi', 'Absensi::index');
         $routes->post('absensi', 'Absensi::save');
+
+        $routes->resource('prestasi');
     });
 
     $routes->get('rekomendasi/beasiswa', 'Rekomendasi::beasiswa');

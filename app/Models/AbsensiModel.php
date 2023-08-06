@@ -56,7 +56,13 @@ class AbsensiModel extends Model
             ->where('ket', 'hadir')
             ->countAllResults();
 
-        return $hadir / $pertemuan * 100;
+        if ($hadir == 0) {
+            $result = 0;
+        } else {
+            $result = $hadir / $pertemuan * 100;
+        }
+
+        return $result;
     }
 
     public function getKehadiran()

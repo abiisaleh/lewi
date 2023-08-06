@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class PelanggaranSiswa extends Migration
+class Prestasi extends Migration
 {
     public function up()
     {
@@ -14,24 +14,21 @@ class PelanggaranSiswa extends Migration
                 'type' => 'INT',
                 'constraint' => 3
             ],
-            'fkPelanggaran' => [
-                'type' => 'INT',
-                'constraint' => 3
-            ],
-            'tgl' => [
-                'type' => 'DATETIME'
-            ],
             'fkKelasSiswaTa' => [
                 'type' => 'INT',
                 'constraint' => 3
             ],
+            'prestasi' => [
+                'type' => 'VARCHAR',
+                'constraint' => 100
+            ],
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('pelanggaran_siswa');
+        $this->forge->createTable('prestasi');
     }
 
     public function down()
     {
-        $this->forge->dropTable('pelanggaran_siswa');
+        $this->forge->dropTable('prestasi');
     }
 }

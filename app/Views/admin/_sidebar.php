@@ -105,24 +105,31 @@ $uri2 = $uri[2] ?? null;
 
                 <?php elseif (in_groups('guru')) : ?>
 
-                    <li class="sidebar-item <?= ($uri2 == 'nilai') ? 'active' : '' ?>" id="Jadwal Pelajaran">
+                    <li class="sidebar-item <?= ($uri2 == 'nilai') ? 'active' : '' ?>">
                         <a href="admin/monitor/nilai" class="sidebar-link">
                             <i class="bi bi-clipboard-data-fill"></i>
                             <span>Nilai Semester</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-item <?= ($uri2 == 'absensi') ? 'active' : '' ?>" id="Jadwal Pelajaran">
+                    <li class="sidebar-item <?= ($uri2 == 'absensi') ? 'active' : '' ?>">
                         <a href="admin/monitor/absensi" class="sidebar-link">
                             <i class="bi bi-clock-fill"></i>
                             <span>Kehadiran Siswa</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-item <?= ($uri1 == 'monitor' & $uri2 == 'pelanggaran') ? 'active' : '' ?>" id="Jadwal Pelajaran">
+                    <li class="sidebar-item <?= ($uri1 == 'monitor' & $uri2 == 'pelanggaran') ? 'active' : '' ?>">
                         <a href="admin/monitor/pelanggaran" class="sidebar-link">
                             <i class="bi bi-clipboard2-x-fill"></i>
                             <span>Pelanggaran</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item <?= ($uri1 == 'monitor' & $uri2 == 'prestasi') ? 'active' : '' ?>">
+                        <a href="admin/monitor/prestasi" class="sidebar-link">
+                            <i class="bi bi-clipboard2-x-fill"></i>
+                            <span>Prestasi</span>
                         </a>
                     </li>
 

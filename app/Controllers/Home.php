@@ -25,6 +25,7 @@ class Home extends BaseController
         $data['pelanggaran'] = model('PelanggaranSiswaModel')->join('pelanggaran', 'pelanggaran.id = fkPelanggaran')->where('fkSiswa', $nis)->find();
         $data['nilai'] = model('SiswaModel')->find($nis);
         $data['absen'] = model('AbsensiModel')->where('fkSiswa', $nis)->where('tgl', date('Y-m-d'))->find($nis) ?? '';
+        $data['prestasi'] = model('PrestasiModel')->where('fkSiswa', $nis)->find();
 
         return view('user/siswa', $data);
     }

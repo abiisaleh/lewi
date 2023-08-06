@@ -137,6 +137,33 @@
                     </div>
                 </div>
 
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Prestasi</h4>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Prestasi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $i =  1;
+                                    foreach ($prestasi as $Prestasi) : ?>
+                                        <tr>
+                                            <td><?= $i++ ?></td>
+                                            <td><?= $Prestasi['prestasi'] ?></td>
+                                        </tr>
+                                    <?php endforeach ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-12" id="rekomendasi-prestasi"></div>
                 <div class="col-12" id="rekomendasi-beasiswa"></div>
 
