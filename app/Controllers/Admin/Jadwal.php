@@ -48,7 +48,7 @@ class Jadwal extends ResourceController
     {
         $fkKelas = $this->request->getPost('fkKelas');
 
-        $TA = model('TaModel')->countAll();
+        $TA = $this->request->getPost('fkTA') ?? model('TaModel')->countAll();
         // Cek data id wali kelas.
         $data = $this->model
             ->where('fkKelas', $fkKelas)

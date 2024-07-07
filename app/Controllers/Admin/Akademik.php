@@ -32,9 +32,33 @@ class Akademik extends ResourceController
     public function index()
     {
         $kelas = $this->request->getGet('tingkat');
-        $ta = $this->TAmodel->countAllResults();
+        $ta = $this->request->getGet('ta') ?? $this->TAmodel->countAllResults();
+        $data['allTA'] = $this->TAmodel->findAll();
+        $data['ta'] = $this->TAmodel->find($ta);
+
         if ($this->request->isAjax()) {
-            $data['data'] = $this->KelasModel->wali($ta)->findAll();
+            $dataWali = $this->WaliKelasModel
+                ->guru()
+                ->where('fkTA', $ta)
+                ->findAll();
+
+            $dataKelas = $this->KelasModel->findAll();
+
+            foreach ($dataKelas as &$kelas) {
+                $kelas['jumlah_siswa'] = $this->SiswaKelasModel->where('fkKelas', $kelas['id'])->where('fkTA', $ta)->countAllResults();
+
+                foreach ($dataWali as $wali) {
+                    if ($kelas['id'] == $wali['fkKelas']) {
+                        $kelas['wali'] = $wali['nama'];
+                        $kelas['jadwal'] = ($wali['jadwal'] == '') ? null : $wali['jadwal'];
+                    } else {
+                        $kelas['wali'] = null;
+                        $kelas['jadwal'] = null;
+                    }
+                }
+            }
+
+            $data['data'] = $dataKelas;
 
             return $this->response->setJSON($data);
         } else {
@@ -53,7 +77,10 @@ class Akademik extends ResourceController
      */
     public function show($id = null)
     {
-        $data['data'] = $this->SiswaKelasModel->where('fkKelas', $id)->siswa()->find();
+        $idTA = str_split($id)[0];
+        $idKelas = str_split($id)[2];
+
+        $data['data'] = $this->SiswaKelasModel->where('fkKelas', $idKelas)->where('fkTA', $idTA)->siswa()->find();
         return $this->response->setJSON($data);
     }
 
@@ -86,11 +113,15 @@ class Akademik extends ResourceController
      */
     public function edit($id = null)
     {
-        $kelas = $this->KelasModel->find($id);
+        $idTA = str_split($id)[0];
+        $idKelas = str_split($id)[2];
+
+        $kelas = $this->KelasModel->find($idKelas);
 
         $data['title'] = 'Data Akademik';
         $data['subtitle'] = 'Kelas ' . $kelas['tingkat'] . ' ' . $kelas['jurusan'] . ' ' . $kelas['kode'];
         $data['kelas'] = $kelas;
+        $data['ta'] = $idTA;
         return view('admin/akademik-siswa', $data);
     }
 
@@ -117,7 +148,6 @@ class Akademik extends ResourceController
     public function walikelas()
     {
         $data = $this->request->getPost();
-        $data['fkTA'] = $this->TAmodel->countAllResults();
 
         // Cek data wali kelas.
         $data['id'] = $this->WaliKelasModel

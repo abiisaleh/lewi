@@ -1,9 +1,28 @@
 <?php $this->extend('admin/layout'); ?>
 
 <?php $this->section('tools'); ?>
-<button type="button" class="btn btn-primary block" data-bs-toggle="modal" data-bs-target="#modal-add">
-  <i class="bi bi-plus"></i> <span class="d-none d-sm-inline">Tahun Ajaran Baru</span> <span class="d-sm-none">TA</span>
-</button>
+
+<div class="row">
+  <div class="col-md-8 form-group">
+    <fieldset class="form-group" x-data="{ tahunAjaran: <?= $ta['id'] ?> }">
+      <select class="form-select" id="inputTA" name="inputTA" x-model="tahunAjaran" x-on:change="window.location.href = '/admin/akademik?ta=' + tahunAjaran">
+        <?php foreach ($allTA as $item) : ?>
+          <option value="<?= $item['id'] ?>"><?= $item['tahun_awal'] ?>/<?= $item['tahun_akhir'] ?></option>
+        <?php endforeach; ?>
+      </select>
+    </fieldset>
+  </div>
+
+  <div class="col">
+    <button type="button" class="btn btn-primary block" data-bs-toggle="modal" data-bs-target="#modal-add">
+      <i class="bi bi-plus"></i>
+    </button>
+  </div>
+
+</div>
+
+
+
 
 <!-- Modal Tahun Akademik -->
 <div class="modal fade text-left" id="modal-add">
@@ -11,7 +30,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="myModalLabel1">
-          Tahun Ajaran
+          Tahun Ajaran Baru
         </h5>
         <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
           <i data-feather="x"></i>
@@ -20,10 +39,10 @@
       <div class="modal-body">
         <form class="form form-horizontal row" method="post" enctype="multipart/form-data" id="form-add">
           <?= csrf_field(); ?>
+
           <input type="text" id="inputid" name="id" hidden>
           <div class="form-body">
             <div class="row">
-
               <div class="col-md-4">
                 <label for="inputTahun">Tahun Ajaran</label>
               </div>
@@ -184,7 +203,7 @@
         "render": function(data) {
           return `
           <button class='btn btn-sm btn-warning btnWali'>wali</button>
-          <a class='btn btn-sm btn-danger' href='` + window.location.href + '/' + data.id + `/edit'>siswa</a>
+          <a class='btn btn-sm btn-danger' href='/admin/akademik/<?= $ta["id"] ?>-` + data.id + `/edit'>siswa</a>
           <button class="btn btn-sm btn-primary btnJadwal">jadwal</button>
           `
         }
@@ -219,6 +238,7 @@
           onerror: null,
           ondata: function(formData) {
             // Append additional data to the FormData object
+            formData.append('fkTA', <?= $ta['id'] ?>);
             formData.append('fkKelas', data.id);
 
             // Return the modified FormData object
@@ -236,9 +256,10 @@
   $('#form-wali').submit(function(e) {
     e.preventDefault()
     $.ajax({
-      url: window.location.href + '/walikelas',
+      url: 'admin/akademik/walikelas',
       type: 'POST',
       data: {
+        fkTA: '<?= $ta['id'] ?>',
         fkKelas: $('#inputfkKelas').val(),
         fkGuru: $('#inputfkGuru').val(),
       },

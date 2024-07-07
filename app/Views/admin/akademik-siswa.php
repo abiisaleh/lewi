@@ -45,7 +45,7 @@
     language: {
       url: 'https://cdn.datatables.net/plug-ins/1.13.4/i18n/id.json'
     },
-    ajax: '<?= base_url('admin/akademik/' . $kelas['id']) ?>',
+    ajax: '<?= base_url('admin/akademik/' . $ta . '-' . $kelas['id']) ?>',
     columns: [{
         "title": "NIS",
         "data": "nis"

@@ -39,6 +39,12 @@ class WaliKelasModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    public function guru()
+    {
+        return $this
+            ->join('guru', 'fkGuru = nip');
+    }
+
     public function kelas($nip)
     {
         $TA = $this->db->table('TA')->countAllResults();

@@ -44,7 +44,6 @@ class KelasModel extends Model
         return $this
             ->join('wali_kelas', 'kelas.id = wali_kelas.fkKelas', 'left')
             ->join('guru', 'wali_kelas.fkGuru = guru.nip', 'left')
-            // ->where('fkTA', $ta)
             ->select('kelas.*, guru.nama as wali, wali_kelas.jadwal');
     }
 
@@ -57,6 +56,7 @@ class KelasModel extends Model
                 return $data;
             }
             $jumlahSiswa = $siswaModel->where('fkKelas', $Item['id'])->countAllResults();
+
             $Item['jumlah_siswa'] = $jumlahSiswa;
         }
 
