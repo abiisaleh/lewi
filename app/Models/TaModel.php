@@ -13,7 +13,7 @@ class TaModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['tahun_awal', 'tahun_akhir', 'semester'];
+    protected $allowedFields    = ['tahun_awal', 'tahun_akhir', 'semester', 'aktif'];
 
     // Dates
     protected $useTimestamps = false;

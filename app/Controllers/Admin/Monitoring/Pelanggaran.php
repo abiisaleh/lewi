@@ -16,8 +16,7 @@ class Pelanggaran extends BaseController
 
     public function index()
     {
-        $lastTA = model('TaModel')->countAllResults();
-        $ta = model('TaModel')->find($lastTA);
+        $ta = model('TaModel')->where('aktif', 1)->first();
 
         $data['kelas']['id'] = model('WaliKelasModel')->kelas(user()->username);
         $kelas = model('KelasModel')->find($data['kelas']['id']);
@@ -26,8 +25,11 @@ class Pelanggaran extends BaseController
             // $data['data'] = $this->PelanggaranSiswaModel->siswa()->find();
 
             //tiap wali hanya bisa lihat data muridnya
-            $data['data'] = $this->PelanggaranSiswaModel->siswa()->wali(user()->username)->find();
-
+            try {
+                $data['data'] = $this->PelanggaranSiswaModel->siswa()->wali(user()->username)->find();
+            } catch (\Throwable $th) {
+                $data['data'] = [];
+            }
 
             return $this->response->setJSON($data);
         } else {

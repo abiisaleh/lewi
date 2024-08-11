@@ -35,6 +35,7 @@ $routes->post('siswa', 'Home::siswa');
 $routes->get('admin', 'Admin\Dashboard::index', ['filter' => 'role:admin,guru']);
 $routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'role:admin'], function ($routes) {
 
+    $routes->resource('datamaster/tahunajaran');
     $routes->resource('datamaster/kelas');
     $routes->resource('datamaster/mapel');
     $routes->resource('datamaster/pelanggaran');

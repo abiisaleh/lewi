@@ -18,8 +18,7 @@ class Absensi extends BaseController
     {
         $data['kelas']['id'] = $this->WaliKelasModel->kelas(user()->username);
 
-        $lastTA = model('TaModel')->countAllResults();
-        $ta = model('TaModel')->find($lastTA);
+        $ta = model('TaModel')->where('aktif', 1)->first();
 
 
         if ($data['kelas']['id']) {

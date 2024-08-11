@@ -49,7 +49,7 @@ class PelanggaranSiswaModel extends Model
 
     public function wali($nip)
     {
-        $TA = $this->db->table('TA')->countAllResults();
+        $TA = $this->db->table('TA')->getWhere('aktif = 1', 1)->getFirstRow()->id;
         $kelas = $this->db->table('wali_kelas')->where('fkGuru', $nip)->where('fkTA', $TA)->get()->getResultArray()[0]['fkKelas'];
 
         return $this

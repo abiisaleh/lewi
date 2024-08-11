@@ -55,6 +55,9 @@ $uri2 = $uri[2] ?? null;
                             <span>Data Master</span>
                         </a>
                         <ul class="submenu <?= ($uri1 == 'datamaster') ? 'submenu-open' : '' ?>">
+                            <li class="submenu-item <?= ($uri2 == 'tahunajaran') ? 'active' : '' ?>">
+                                <a href="admin/datamaster/tahunajaran">Tahun Ajaran</a>
+                            </li>
                             <li class="submenu-item  <?= ($uri2 == 'kelas') ? 'active' : '' ?>">
                                 <a href="admin/datamaster/kelas">Kelas</a>
                             </li>

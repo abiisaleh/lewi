@@ -39,7 +39,7 @@ class KelasModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function wali($ta)
+    public function wali()
     {
         return $this
             ->join('wali_kelas', 'kelas.id = wali_kelas.fkKelas', 'left')

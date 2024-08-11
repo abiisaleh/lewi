@@ -32,20 +32,20 @@ class Akademik extends ResourceController
     public function index()
     {
         $kelas = $this->request->getGet('tingkat');
-        $ta = $this->request->getGet('ta') ?? $this->TAmodel->countAllResults();
+        $ta = $this->TAmodel->where('aktif', 1)->first();
         $data['allTA'] = $this->TAmodel->findAll();
-        $data['ta'] = $this->TAmodel->find($ta);
+        $data['ta'] = $ta;
 
         if ($this->request->isAjax()) {
             $dataWali = $this->WaliKelasModel
                 ->guru()
-                ->where('fkTA', $ta)
+                ->where('fkTA', $ta['id'])
                 ->findAll();
 
             $dataKelas = $this->KelasModel->findAll();
 
             foreach ($dataKelas as &$kelas) {
-                $kelas['jumlah_siswa'] = $this->SiswaKelasModel->where('fkKelas', $kelas['id'])->where('fkTA', $ta)->countAllResults();
+                $kelas['jumlah_siswa'] = $this->SiswaKelasModel->where('fkKelas', $kelas['id'])->where('fkTA', $ta['id'])->countAllResults();
 
                 foreach ($dataWali as $wali) {
                     if ($kelas['id'] == $wali['fkKelas']) {
@@ -63,7 +63,7 @@ class Akademik extends ResourceController
             return $this->response->setJSON($data);
         } else {
             $data['title'] = 'Data Akademik';
-            $tahun = $this->TAmodel->find($ta);
+            $tahun = $data['ta'];
 
             $data['subtitle'] = 'Semester ' . $tahun['semester'] . ' T.A. ' . $tahun['tahun_awal'] . '/' . $tahun['tahun_akhir'];
             return view('admin/akademik', $data);

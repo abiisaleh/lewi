@@ -22,7 +22,14 @@ class TahunAjaran extends ResourceController
      */
     public function index()
     {
-        //
+        if ($this->request->isAjax()) {
+            $data['data'] = $this->model->orderBy('id', 'DESC')->findAll();
+
+            return $this->response->setJSON($data);
+        } else {
+            $data['title'] = 'Data Kelas';
+            return view('admin/data-tahun-ajaran', $data);
+        }
     }
 
     /**
@@ -73,7 +80,9 @@ class TahunAjaran extends ResourceController
      */
     public function update($id = null)
     {
-        //
+        $this->model->where('aktif', 1)->set(["aktif" => 0])->update();
+
+        $this->model->update($id, $this->request->getJSON());
     }
 
     /**

@@ -47,7 +47,7 @@ class WaliKelasModel extends Model
 
     public function kelas($nip)
     {
-        $TA = $this->db->table('TA')->countAllResults();
+        $TA = $this->db->table('TA')->getWhere('aktif = 1', 1)->getFirstRow()->id;
 
         $walikelas = $this
             ->where('fkGuru', $nip)

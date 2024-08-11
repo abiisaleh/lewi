@@ -47,7 +47,7 @@ class SiswaModel extends Model
     function kelas()
     {
         //cek tahun ajaran terbaru
-        $TA = $this->db->table('TA')->countAllResults();
+        $TA = $this->db->table('TA')->getWhere('aktif = 1', 1)->getFirstRow()->id;
 
         return $this
             ->join('kelas_siswa_ta', 'fkSiswa = nis')

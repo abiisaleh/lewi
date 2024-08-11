@@ -63,8 +63,11 @@ class Dashboard extends BaseController
         $resultString = '[' . implode(', ', $result) . ']';
         $data['pelanggaran'] = $resultString;
 
+        $tahunAjaran = model('TaModel')->where('aktif', 1)->first();
+
 
         $data['title'] = 'Dashboard';
+        $data['subtitle'] = 'Semseter ' . $tahunAjaran['semester'] . ' Tahun Ajaran ' . $tahunAjaran['tahun_awal'] . '/' . $tahunAjaran['tahun_akhir'];
         return view('admin/dashboard', $data);
     }
 }

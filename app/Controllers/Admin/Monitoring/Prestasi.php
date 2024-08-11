@@ -16,9 +16,7 @@ class Prestasi extends ResourceController
     {
         $idkelas = model('WaliKelasModel')->kelas(user()->username);
 
-        $lastTA = model('TaModel')->countAllResults();
-        $ta = model('TaModel')->find($lastTA);
-
+        $ta = model('TaModel')->where('aktif', 1)->first();
 
         if ($idkelas) {
             $kelas = model('KelasModel')->find($idkelas);
@@ -27,7 +25,11 @@ class Prestasi extends ResourceController
         }
         if ($this->request->isAjax()) {
             //data prestasi non akademik
-            $data['data'] = $this->model->kelas($idkelas, $ta['id'])->find();
+            try {
+                $data['data'] = $this->model->kelas($idkelas, $ta['id'])->find();
+            } catch (\Throwable $th) {
+                $data['data'] = [];
+            }
 
             return $this->response->setJSON($data);
         } else {

@@ -37,7 +37,7 @@ class Nilai extends ResourceController
         $data['kelas']['id'] = $this->WaliKelasModel->kelas(user()->username);
 
         $lastTA = model('TaModel')->countAllResults();
-        $ta = model('TaModel')->find($lastTA);
+        $ta = model('TaModel')->where('aktif', 1)->first();
 
 
         if ($data['kelas']['id']) {
@@ -54,7 +54,7 @@ class Nilai extends ResourceController
 
             //cek peringkat
             if (!is_null($data['data'])) {
-                usort($data['data'], fn ($a, $b) => $b['nilai'] - $a['nilai']);
+                usort($data['data'], fn($a, $b) => $b['nilai'] - $a['nilai']);
 
                 $TA = model('TaModel')->countAll();
                 $peringkat = 0;
