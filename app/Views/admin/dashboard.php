@@ -105,10 +105,10 @@
 <?php $this->endsection('content'); ?>
 
 <?php $this->section('style'); ?>
-<link rel="stylesheet" href="assets/css/main/app.css">
-<link rel="stylesheet" href="assets/css/main/app-dark.css">
+<link rel="stylesheet" href="assets/compiled/css/main/app.css">
+<link rel="stylesheet" href="assets/compiled/css/main/app-dark.css">
 
-<link rel="stylesheet" href="assets/css/shared/iconly.css">
+<link rel="stylesheet" href="assets/compiled/css/shared/iconly.css">
 <?php $this->endsection('style'); ?>
 
 <?php $this->section('script'); ?>

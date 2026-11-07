@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="assets/compiled/css/app.css" />
     <link rel="stylesheet" href="assets/compiled/css/app-dark.css" />
 
-    <link rel="stylesheet" href="assets/css/shared/iconly.css">
+    <link rel="stylesheet" href="assets/compiled/css/iconly.css">
 
     <link rel="stylesheet" href="assets/extensions/toastify-js/src/toastify.css" />
 
