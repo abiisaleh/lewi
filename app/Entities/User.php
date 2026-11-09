@@ -5,6 +5,7 @@ namespace App\Entities;
 use CodeIgniter\Entity\Entity;
 use Exception;
 use Myth\Auth\Password;
+use App\Models\GuruModel;
 use RuntimeException;
 
 class User extends \Myth\Auth\Entities\User
@@ -286,5 +287,17 @@ class User extends \Myth\Auth\Entities\User
     public function setPermissions(?array $permissions = null)
     {
         throw new RuntimeException('User entity does not support saving permissions directly.');
+    }
+
+    public function getGuru(?array $roles = null)
+    {
+        if ($this->username === 'admin') {
+            return 'admin'; // Jika user adalah admin, kembalikan null
+        }
+
+        $guruModel = new GuruModel();
+        
+        // Mengambil data guru yang NIP-nya sama dengan username user saat ini
+        return $guruModel->where('nip', $this->attributes['username'])->first()['nama'];
     }
 }

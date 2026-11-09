@@ -105,18 +105,16 @@
 <?php $this->endsection('content'); ?>
 
 <?php $this->section('style'); ?>
-<link rel="stylesheet" href="assets/compiled/css/main/app.css">
-<link rel="stylesheet" href="assets/compiled/css/main/app-dark.css">
+<link rel="stylesheet" href="assets/compiled/css/app.css">
+<link rel="stylesheet" href="assets/compiled/css/app-dark.css">
 
-<link rel="stylesheet" href="assets/compiled/css/shared/iconly.css">
+<link rel="stylesheet" href="assets/compiled/css/iconly.css">
 <?php $this->endsection('style'); ?>
 
 <?php $this->section('script'); ?>
-<script src="assets/js/app.js"></script>
-<script src="assets/js/bootstrap.js"></script>
 
 <script src="assets/extensions/apexcharts/apexcharts.min.js"></script>
-<script src="assets/js/pages/dashboard.js"></script>
+<script src="assets/static/js/pages/dashboard.js"></script>
 
 <script>
     var optionsPelanggaran = {
