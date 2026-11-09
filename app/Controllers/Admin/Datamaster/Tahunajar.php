@@ -7,7 +7,7 @@ use App\Models\KelasModel;
 use App\Models\TaModel;
 use CodeIgniter\RESTful\ResourceController;
 
-class TA extends ResourceController
+class Tahunajar extends ResourceController
 {
     protected $model;
 
