@@ -45,15 +45,21 @@ class Akademik extends ResourceController
             $dataKelas = $this->KelasModel->findAll();
 
             foreach ($dataKelas as &$kelas) {
-                $kelas['jumlah_siswa'] = $this->SiswaKelasModel->where('fkKelas', $kelas['id'])->where('fkTA', $ta['id'])->countAllResults();
+                $kelas['jumlah_siswa'] = $this->SiswaKelasModel
+                    ->where('fkKelas', $kelas['id'])
+                    ->where('fkTA', $ta['id'])
+                    ->countAllResults();
 
+                // Inisialisasi nilai default
+                $kelas['wali'] = null;
+                $kelas['jadwal'] = null;
+
+                // Cari wali yang sesuai
                 foreach ($dataWali as $wali) {
                     if ($kelas['id'] == $wali['fkKelas']) {
                         $kelas['wali'] = $wali['nama'];
                         $kelas['jadwal'] = ($wali['jadwal'] == '') ? null : $wali['jadwal'];
-                    } else {
-                        $kelas['wali'] = null;
-                        $kelas['jadwal'] = null;
+                        break; // Hentikan loop wali setelah ketemu agar tidak tertimpa
                     }
                 }
             }
