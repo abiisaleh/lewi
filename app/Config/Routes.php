@@ -31,6 +31,8 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->post('siswa', 'Home::siswa');
+$routes->get('profile', 'Home::profile', ['filter' => 'login']);
+$routes->post('profile', 'Home::updateProfile', ['filter' => 'login']);
 
 $routes->get('admin', 'Admin\Dashboard::index', ['filter' => 'role:admin,guru']);
 $routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'role:admin'], function ($routes) {
