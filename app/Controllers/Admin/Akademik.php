@@ -124,6 +124,8 @@ class Akademik extends ResourceController
 
         $kelas = $this->KelasModel->find($idKelas);
 
+        dd($idTA, $idKelas, $kelas);
+
         $data['title'] = 'Data Akademik';
         $data['subtitle'] = 'Kelas ' . $kelas['tingkat'] . ' ' . $kelas['jurusan'] . ' ' . $kelas['kode'];
         $data['kelas'] = $kelas;
