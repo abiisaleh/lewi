@@ -83,8 +83,9 @@ class Akademik extends ResourceController
      */
     public function show($id = null)
     {
-        $idTA = str_split($id)[0];
-        $idKelas = str_split($id)[2];
+        $pecah = explode('-', $id); // Hasil: ['3', '14']
+        $idTA = $pecah[0];          // Hasil: "3"
+        $idKelas = $pecah[1];
 
         $data['data'] = $this->SiswaKelasModel->where('fkKelas', $idKelas)->where('fkTA', $idTA)->siswa()->find();
         return $this->response->setJSON($data);
@@ -172,11 +173,10 @@ class Akademik extends ResourceController
     public function siswa()
     {
         $data = $this->request->getPost();
-        $data['fkTA'] = $this->TAmodel->where('aktif', 1)->first();
+        $data['fkTA'] = $this->TAmodel->where('aktif', 1)->first()['id'];
 
         // Cek data siswa di kelas.
         $siswa = $this->SiswaKelasModel
-            ->where('fkKelas', $data['fkKelas'])
             ->where('fkTA', $data['fkTA'])
             ->where('fkSiswa', $data['fkSiswa'])
             ->first();
