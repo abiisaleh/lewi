@@ -172,7 +172,7 @@ class Akademik extends ResourceController
     public function siswa()
     {
         $data = $this->request->getPost();
-        $data['fkTA'] = $this->TAmodel->countAllResults();
+        $data['fkTA'] = $this->TAmodel->where('aktif', 1)->first();
 
         // Cek data siswa di kelas.
         $siswa = $this->SiswaKelasModel
