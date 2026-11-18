@@ -119,12 +119,11 @@ class Akademik extends ResourceController
      */
     public function edit($id = null)
     {
-        $idTA = str_split($id)[0];
-        $idKelas = str_split($id)[2];
+        $pecah = explode('-', $id); // Hasil: ['3', '14']
+        $idTA = $pecah[0];          // Hasil: "3"
+        $idKelas = $pecah[1];
 
         $kelas = $this->KelasModel->find($idKelas);
-
-        dd($idTA, $idKelas, $kelas);
 
         $data['title'] = 'Data Akademik';
         $data['subtitle'] = 'Kelas ' . $kelas['tingkat'] . ' ' . $kelas['jurusan'] . ' ' . $kelas['kode'];
