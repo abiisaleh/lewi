@@ -51,6 +51,11 @@ class KelasModel extends Model
     {
         $siswaModel = $this->db->table('kelas_siswa_ta');
 
+        if (empty($data['data']) || !is_array($data['data'])) {
+            $data['data']['jumlah_siswa'] = 0;
+            return $data;
+        }
+
         foreach ($data['data'] as &$Item) {
             if (is_string($Item)) {
                 return $data;
