@@ -28,8 +28,7 @@ class Rekomendasi extends BaseController
 
     public function beasiswa()
     {
-        $lastTA = model('TaModel')->countAllResults();
-        $ta = model('TaModel')->find($lastTA);
+        $ta = model('TaModel')->where('aktif', 1)->first();
         $data['subtitle'] = 'Semester ' . $ta['semester'] . ' Tahun Ajaran ' . $ta['tahun_awal'] . '/' . $ta['tahun_akhir'];
 
         $data['title'] = 'Rekomendasi Beasiswa';
@@ -42,7 +41,7 @@ class Rekomendasi extends BaseController
         //cari siswa berdasarkan tingkat dan jurusan
         $tingkat = $this->request->getPost('tingkat');
         $jurusan = $this->request->getPost('jurusan');
-        $TA = model('TaModel')->countAll();
+        $TA = model('TaModel')->where('aktif', 1)->first();
 
         //bobot kriteria
         $kriteria = [
@@ -120,8 +119,8 @@ class Rekomendasi extends BaseController
 
     public function prestasi()
     {
-        $lastTA = model('TaModel')->countAllResults();
-        $ta = model('TaModel')->find($lastTA);
+        $ta = model('TaModel')->where('aktif', 1)->first();
+
 
         $data['title'] = 'Rekomendasi Prestasi';
         $data['subtitle'] = 'Semester ' . $ta['semester'] . ' Tahun Ajaran ' . $ta['tahun_awal'] . '/' . $ta['tahun_akhir'];
@@ -133,7 +132,7 @@ class Rekomendasi extends BaseController
         //cari siswa berdasarkan tingkat dan jurusan
         $tingkat = $this->request->getPost('tingkat');
         $jurusan = $this->request->getPost('jurusan');
-        $TA = model('TaModel')->countAll();
+        $TA = model('TaModel')->where('aktif', 1)->first();
 
         //bobot kriteria
         $kriteria = [
