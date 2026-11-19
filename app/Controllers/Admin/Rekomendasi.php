@@ -41,7 +41,7 @@ class Rekomendasi extends BaseController
         //cari siswa berdasarkan tingkat dan jurusan
         $tingkat = $this->request->getPost('tingkat');
         $jurusan = $this->request->getPost('jurusan');
-        $TA = model('TaModel')->where('aktif', 1)->first();
+        $TA = model('TaModel')->where('aktif', 1)->first()['id'];
 
         //bobot kriteria
         $kriteria = [
@@ -132,7 +132,7 @@ class Rekomendasi extends BaseController
         //cari siswa berdasarkan tingkat dan jurusan
         $tingkat = $this->request->getPost('tingkat');
         $jurusan = $this->request->getPost('jurusan');
-        $TA = model('TaModel')->where('aktif', 1)->first();
+        $TA = model('TaModel')->where('aktif', 1)->first()['id'];
 
         //bobot kriteria
         $kriteria = [
