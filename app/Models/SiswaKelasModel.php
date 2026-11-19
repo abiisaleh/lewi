@@ -46,7 +46,7 @@ class SiswaKelasModel extends Model
 
     public function Kelas($nis)
     {
-        $TA = $this->db->table('TA')->countAll();
+        $TA = $this->db->table('TA')->where('aktif', true)->get()->getRowArray()['id'] ?? null;
 
         return $this
             ->join('kelas', 'kelas_siswa_ta.fkKelas = kelas.id')

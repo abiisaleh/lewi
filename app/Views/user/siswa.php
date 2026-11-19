@@ -47,7 +47,7 @@
                                     <p>: <?= $siswa['tempt_lahir'] ?>, <?= $siswa['tgl_lahir'] ?></p>
                                 </div>
                             </div>
-                            <p class="card-text">* <a href="login">Masuk</a> sebagai siswa untuk mengubah data.</p>
+                            <!-- <p class="card-text">* <a href="login">Masuk</a> sebagai siswa untuk mengubah data.</p> -->
                         </div>
                     </div>
                 </div>
@@ -129,33 +129,6 @@
                                             <td><?= $i++ ?></td>
                                             <td><?= $Pelanggaran['nama'] ?></td>
                                             <td><?= $Pelanggaran['skor'] ?></td>
-                                        </tr>
-                                    <?php endforeach ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Prestasi</h4>
-                        </div>
-                        <div class="card-body">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Prestasi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $i =  1;
-                                    foreach ($prestasi as $Prestasi) : ?>
-                                        <tr>
-                                            <td><?= $i++ ?></td>
-                                            <td><?= $Prestasi['prestasi'] ?></td>
                                         </tr>
                                     <?php endforeach ?>
                                 </tbody>
